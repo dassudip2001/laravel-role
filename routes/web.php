@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DepartmentController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\RoleController;
@@ -45,3 +47,12 @@ require __DIR__.'/auth.php';
 //
 //Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('permission:write post');
 //Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('role:editor|admin');
+// department Route
+
+Route::get('/department',[DepartmentController::class,'index'])->name('index');
+Route::post('/department',[DepartmentController::class,'create'])->name('create');
+Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit');
+Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update');
+Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
+
+// Faculty Routes
