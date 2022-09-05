@@ -25,19 +25,19 @@
                                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                             <div class="md:col-span-3">
                                                 <label for="name"> Department Name </label>
-                                                <input type="text" name="name" id="name"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                                <input type="text" name="name" id="name" value="{{$department->name}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                                             </div>
 
                                             <div class="md:col-span-3">
                                                 <label for="code">Department Code</label>
-                                                <input type="text" name="code" id="code"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                                <input type="text" name="code" id="code" value="{{$department->code}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                                             </div>
 
 
 
                                             <div class="md:col-span-6">
                                                 <label for="describption">Department Describption</label>
-                                                <input type="text" name="description" id="describption" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                                                <input type="text" name="description" id="describption" value="{{$department->description}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
                                             </div>
 
                                             <div class="md:col-span-6 text-right">
