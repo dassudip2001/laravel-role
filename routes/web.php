@@ -42,17 +42,19 @@ Route::middleware(['auth','role:admin'])->name('admin.')->prefix('admin')->group
     Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+
+
+
 });
 require __DIR__.'/auth.php';
 //
 //Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('permission:write post');
 //Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('role:editor|admin');
 // department Route
-
-Route::get('/department',[DepartmentController::class,'index'])->name('index');
-Route::post('/department',[DepartmentController::class,'create'])->name('create');
-Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit');
-Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update');
-Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
+    Route::get('/department',[DepartmentController::class,'index'])->name('index');
+    Route::post('/department',[DepartmentController::class,'create'])->name('create');
+    Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit');
+    Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update');
+    Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
 
 // Faculty Routes

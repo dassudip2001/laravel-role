@@ -18,10 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->string('name');
             $table->string('code',50)->unique()->index();
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('created_by');
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

@@ -14,7 +14,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $department=Department::all();
-        return view('department.department',['department'=>$department]);
+        return view('department.create',['department'=>$department]);
     }
 
     /**
@@ -22,7 +22,7 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $department=new Department;
         $department->name=$request->name;
@@ -75,14 +75,33 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $department=Department::find($id);
-        $department->name=$request->name;
-        $department->code =$request->code;
+   {
+//        $department=Department::find($id);
+//        $department->name=$request->name;
+//        $department->code =$request->code;
+//
+//        $department->description=$request->description;
+//        $department->save();
+//        return redirect(route('index'));
+        $reqData = $request->only(['name', 'description', 'code']);
 
-        $department->description=$request->description;
-        $department->save();
+        $pc =  Department::find($id);
+        if ($pc == null) {
+            abort(501, "Opps! There no record associate with this id $id");
+        }
+        if (array_key_exists('name', $reqData))
+            $pc->name = $reqData['name'];
+        if (array_key_exists('description', $reqData))
+            $pc->description = $reqData['description'];
+        if (array_key_exists('code', $reqData))
+            $pc->code = $reqData['code'];
+        try {
+            $pc->save();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
         return redirect(route('index'));
+
     }
 
     /**
