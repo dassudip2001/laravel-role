@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DepartmentController;
-
+use App\Http\Controllers\Faculty\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\RoleController;
@@ -58,3 +58,4 @@ require __DIR__.'/auth.php';
     Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
 
 // Faculty Routes
+   Route::get('/faculty',[FacultyController::class,'index'])->name('faculty.index');

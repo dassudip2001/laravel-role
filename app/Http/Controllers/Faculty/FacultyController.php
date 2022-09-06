@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Faculty;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Faculty;
 class FacultyController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        return view('faculty.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class FacultyController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
