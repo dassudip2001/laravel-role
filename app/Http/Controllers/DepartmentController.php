@@ -76,31 +76,31 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
    {
-    //    $department=Department::find($id);
-    //    $department->name=$request->name;
-    //    $department->code =$request->code;
+       $department=Department::find($id);
+       $department->name=$request->name;
+       $department->code =$request->code;
 
-    //    $department->description=$request->description;
-    //    $department->save();
-    //    return redirect(route('index'));
-        $reqData = $request->only(['name', 'description', 'code']);
+       $department->description=$request->description;
+       $department->save();
+       return redirect(route('index'));
+        // $reqData = $request->only(['name', 'description', 'code']);
 
-        $department =  Department::find($id);
-        if ($department == null) {
-            abort(501, "Opps! There no record associate with this id $id");
-        }
-        if (array_key_exists('name', $reqData))
-            $department->name = $reqData['name'];
-        if (array_key_exists('description', $reqData))
-            $department->description = $reqData['description'];
-        if (array_key_exists('code', $reqData))
-            $department->code = $reqData['code'];
-        try {
-            $department->save();
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-        return redirect(route('index'));
+        // $department =  Department::find($id);
+        // if ($department == null) {
+        //     abort(501, "Opps! There no record associate with this id $id");
+        // }
+        // if (array_key_exists('name', $reqData))
+        //     $department->name = $reqData['name'];
+        // if (array_key_exists('description', $reqData))
+        //     $department->description = $reqData['description'];
+        // if (array_key_exists('code', $reqData))
+        //     $department->code = $reqData['code'];
+        // try {
+        //     $department->save();
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
+        // return redirect(route('index'))->with('success', 'updated successfully');
 
     }
 

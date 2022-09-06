@@ -60,9 +60,9 @@
                 <div class="min-h-screen py-12 bg-gray-100 flex ">
                     <div class="container max-w-screen-lg mx-auto">
 
-
+{{-- 
                         <form action="/department" method="POST">
-                            @csrf
+                            @csrf --}}
                             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                                 <div class="grid gap-1 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                                     
@@ -91,13 +91,13 @@
                         <td> {{$item->description}}</td>
                         <td>
                             <th class="py-3 px-6 text-left">
-                                <a href=" {{ url('/edit',$item->id) }} "><div class="inline-flex items-end">
+                                <a href=" {{ url('/department/edit',$item->id) }} "><div class="inline-flex items-end">
                                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                                 </div></a>
                                 
                             </th>
                             <th class="py-3 px-6 text-left">
-                                <a href="{{ url('/delete',$item->id) }} "><div class="inline-flex items-end">
+                                <a href="{{ url('/department/delete',$item->id) }} "><div class="inline-flex items-end">
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                                 </div></a>
                                 
@@ -113,7 +113,7 @@
                             </div>
 
 
-                        </form>
+                        {{-- </form> --}}
                     </div>
                 </div>3</div>
 
