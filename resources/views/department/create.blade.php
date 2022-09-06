@@ -6,6 +6,7 @@
     </x-slot>
     <div class="container mx-auto">
         <div class="grid grid-cols-2 gap-2">
+            @role('admin')
             <div>
                 <div class="min-h-screen py-12 bg-gray-100 flex ">
                     <div class="container max-w-screen-lg mx-auto">
@@ -55,7 +56,7 @@
                     </div>
                 </div>3</div>
             <div>
-
+            @endrole
                 {{--  --}}
                 <div class="min-h-screen py-12 bg-gray-100 flex ">
                     <div class="container max-w-screen-lg mx-auto">
@@ -90,27 +91,30 @@
                         <td> {{$item->code}}</td>
                         <td> {{$item->description}}</td>
                         <td>
+                            @role('admin')
                             <th class="py-3 px-6 text-left">
                                 <a href=" {{ url('/department/edit',$item->id) }} "><div class="inline-flex items-end">
                                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                                 </div></a>
                                 
                             </th>
+                             
                             <th class="py-3 px-6 text-left">
                                 <a href="{{ url('/department/delete',$item->id) }} "><div class="inline-flex items-end">
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                                 </div></a>
                                 
                             </th>
+                            @endrole
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                                </table>
+            </table>
                             
                                    
-                                </div>
-                            </div>
+        </div>
+    </div>
 
 
                         {{-- </form> --}}

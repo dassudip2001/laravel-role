@@ -52,7 +52,7 @@ require __DIR__.'/auth.php';
 //Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('role:editor|admin');
 // department Route
     Route::get('/department',[DepartmentController::class,'index'])->name('index');
-    Route::post('/department',[DepartmentController::class,'create'])->name('create');
+    Route::post('/department',[DepartmentController::class,'create'])->name('create')->middleware(['auth','role:admin']);
     Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit');
     Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update');
     Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
