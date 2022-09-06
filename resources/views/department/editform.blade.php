@@ -10,8 +10,7 @@
                     <div class="container max-w-screen-lg mx-auto">
 
 
-                        <form action="/department" method="POST">
-                            
+                        <form action=" " method="POST">      
                             @csrf
                             @method('PUT')
                             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
