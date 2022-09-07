@@ -53,13 +53,13 @@ require __DIR__.'/auth.php';
 // department Route
     Route::get('/department',[DepartmentController::class,'index'])->name('index');
     Route::post('/department',[DepartmentController::class,'create'])->name('create')->middleware(['auth','role:admin']);
-    Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit');
-    Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update');
-    Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy');
+    Route::get('/department/edit/{id}',[DepartmentController::class,'edit'])->name('edit')->middleware(['auth','role:admin']);
+    Route::put('/department/edit/{id}',[DepartmentController::class,'update'])->name('update')->middleware(['auth','role:admin']);
+    Route::get('/department/delete/{id}',[DepartmentController::class,'destroy'])->name('destroy')->middleware(['auth','role:admin']);
 
 // Faculty Routes
    Route::get('/faculty',[FacultyController::class,'index'])->name('faculty.index');
-   Route::post('/faculty',[FacultyController::class,'create'])->name('faculty.create');
+   Route::post('/faculty',[FacultyController::class,'create'])->name('faculty.create')->middleware(['auth','role:admin']);
    Route::get('/faculty/edit/{id}',[FacultyController::class,'edit'])->name('faculty.edit');
    Route::put('/faculty/edit/{id}',[FacultyController::class,'update'])->name('faculty.update');
    Route::get('/faculty/delete/{id}',[FacultyController::class,'destroy'])->name('faculty.destroy');
