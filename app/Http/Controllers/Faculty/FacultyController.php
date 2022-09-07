@@ -14,7 +14,8 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        return view('faculty.create');
+        $faculty=Faculty::all();
+        return view('faculty.create',compact('faculty'));
     }
 
     /**
@@ -22,9 +23,20 @@ class FacultyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $faculty=new Faculty;
+        $faculty->fac_name=$request->fac_name;
+        $faculty->fac_code=$request->fac_code;
+        $faculty->fac_title=$request->fac_title;
+        $faculty->fac_designtion=$request->fac_designtion;
+        $faculty->fac_join=$request->fac_join;
+        $faculty->fac_retirement=$request->fac_retirement;
+        $faculty->fac_phone=$request->fac_phone;
+        $faculty->fac_status=$request->fac_status;
+        $faculty->fac_description=$request->fac_description;
+        $faculty->save();
+        return redirect(route('faculty.index'));
     }
 
     /**
@@ -57,6 +69,8 @@ class FacultyController extends Controller
      */
     public function edit($id)
     {
+        $faculty=Faculty::find($id);
+        return view('faculty.editform',compact('faculty'));
 
     }
 
@@ -69,7 +83,18 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faculty= Faculty::find($id);
+        $faculty->fac_name=$request->fac_name;
+        $faculty->fac_code=$request->fac_code;
+        $faculty->fac_title=$request->fac_title;
+        $faculty->fac_designtion=$request->fac_designtion;
+        $faculty->fac_join=$request->fac_join;
+        $faculty->fac_retirement=$request->fac_retirement;
+        $faculty->fac_phone=$request->fac_phone;
+        $faculty->fac_status=$request->fac_status;
+        $faculty->fac_description=$request->fac_description;
+        $faculty->save();
+        return redirect(route('faculty.index'));
     }
 
     /**
@@ -80,6 +105,7 @@ class FacultyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Faculty::destroy($id);
+        return redirect(route('faculty.index'));
     }
 }

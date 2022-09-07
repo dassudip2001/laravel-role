@@ -59,3 +59,7 @@ require __DIR__.'/auth.php';
 
 // Faculty Routes
    Route::get('/faculty',[FacultyController::class,'index'])->name('faculty.index');
+   Route::post('/faculty',[FacultyController::class,'create'])->name('faculty.create');
+   Route::get('/faculty/edit/{id}',[FacultyController::class,'edit'])->name('faculty.edit');
+   Route::put('/faculty/edit/{id}',[FacultyController::class,'update'])->name('faculty.update');
+   Route::get('/faculty/delete/{id}',[FacultyController::class,'destroy'])->name('faculty.destroy');
