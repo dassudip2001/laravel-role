@@ -46,10 +46,10 @@ class CreateUserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|confirmed|min:8',
-                'fac_code' => 'required',
+                'fac_code' => 'required|unique:faculties|max:50',
                 'fac_title' => 'required',
                 'fac_join' => 'required',
-//                'fac_name'=>'nullable',
+
                 'fac_retirement'=>'required',
                 'fac_designtion' => 'required',
                 'fac_phone' => 'required',
@@ -58,7 +58,7 @@ class CreateUserController extends Controller
             ]);
             $fields=$request->only(['name','email','password'
               ,'fac_code','fac_title','fac_join','fac_retirement',
-               'fac_designtion','fac_phone','fac_status','fac_description'
+               'fac_designtion','fac_phone','fac_status','fac_description','department_id',
             ]);
             $user = new User([
                 'name'=>$fields['name'],
