@@ -10,6 +10,14 @@ use Spatie\Permission\Traits\HasRoles;
 class CreateUser extends Model
 {
     use HasFactory,Notifiable, HasRoles;
+    protected $fillable=[
+
+       'id',
+       'user_id',
+       'faculty_id',
+       'department_id'
+       
+    ];
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');

@@ -59,7 +59,7 @@ class CreateUserController extends Controller
             $fields=$request->only(['name','email','password'
               ,'fac_code','fac_title','fac_join','fac_retirement',
                'fac_designtion','fac_phone','fac_status','fac_description',
-                'department_id',
+
             ]);
             $user = new User([
                 'name'=>$fields['name'],
@@ -87,7 +87,7 @@ class CreateUserController extends Controller
             $pivot=new CreateUser();
             $pivot->user_id=$user->id;
             $pivot->faculty_id=$faculty->id;
-            $pivot->department_id=$fields['department_id'];
+            $pivot->department_id=$faculty->id;
             $pivot->save();
             return redirect(route('usercreate.index'));
             return [
