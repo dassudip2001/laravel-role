@@ -21,7 +21,7 @@ class FacultyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function create(Request $request)
    {
@@ -36,8 +36,17 @@ class FacultyController extends Controller
            $faculty->fac_description=$request->fac_description;
            $faculty->save();
            return redirect(route('faculty.index'));
-           return [                "message" => "Record created successfully.",
-               "status" => 201,            ];        }catch (Exception $e) {            return ["message" => $e->getMessage(),            "status" => $e->getCode()        ];        }
+           return [
+               "message" => "Record created successfully.",
+
+               "status" => 201,
+               ];
+           }catch (Exception $e)
+           {
+               return ["message" => $e->getMessage(),
+           "status" => $e->getCode()
+            ];
+           }
 
 
     }

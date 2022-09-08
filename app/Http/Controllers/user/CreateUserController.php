@@ -58,7 +58,8 @@ class CreateUserController extends Controller
             ]);
             $fields=$request->only(['name','email','password'
               ,'fac_code','fac_title','fac_join','fac_retirement',
-               'fac_designtion','fac_phone','fac_status','fac_description','department_id',
+               'fac_designtion','fac_phone','fac_status','fac_description',
+                'department_id',
             ]);
             $user = new User([
                 'name'=>$fields['name'],
@@ -88,17 +89,15 @@ class CreateUserController extends Controller
             $pivot->faculty_id=$faculty->id;
             $pivot->department_id=$fields['department_id'];
             $pivot->save();
-
-
-            return view('user.create');
-
+            return redirect(route('usercreate.index'));
             return [
                 "message" => "Record created successfully.",
+
                 "status" => 201,
             ];
-        }catch (Exception $e) {
-            return [
-                "message" => $e->getMessage(),
+        }catch (Exception $e)
+        {
+            return ["message" => $e->getMessage(),
                 "status" => $e->getCode()
             ];
         }
