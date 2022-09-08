@@ -16,7 +16,7 @@ class CreateFacultiesTable extends Migration
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
             $table->string('fac_code', 50)->unique()->index();
-            $table->string('fac_name'); //Unique not nullable fild
+//            $table->string('fac_name')->nullable();
             $table->string('fac_title');
 
             $table->string('fac_designtion');

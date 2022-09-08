@@ -4,6 +4,7 @@
 {{--            {{ __('Dashboard') }}--}}
         </h2>
     </x-slot>
+    @role('admin')
     <div class="container mx-auto">
         <div class="grid grid-cols-2 gap-2">
 
@@ -28,10 +29,6 @@
                                                 <input type="text" name="fac_title" id="fac_title" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                                             </div>
 
-                                            <div class="md:col-span-3">
-                                                <label for="fac_name">Faculty Name</label>
-                                                <input type="text" name="fac_name" id="fac_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                                            </div>
 
 
 
@@ -89,6 +86,7 @@
             <div>
 
 {{--second--}}
+@endrole
   <div class="min-h-screen py-12 bg-gray-100 flex ">
                     <div class="container max-w-screen-lg mx-auto">
                             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
@@ -98,7 +96,7 @@
                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                         <th class="py-3 px-6 text-left">ID</th>
                                         <th class="py-3 px-6 text-left">Title</th>
-                                        <th class="py-3 px-6 text-center">Name</th>
+
                                         <th class="py-3 px-6 text-center">Code</th>
                                         <th class="py-3 px-6 text-center">Designtion</th>
                                         <th class="py-3 px-6 text-center">Join</th>
@@ -111,22 +109,22 @@
                                         <th class="py-3 px-6 text-center">Actions</th>
                                     </tr>
                                     </thead>
-                                    
+
                                     <tbody>
                                        @foreach ($faculty as $item)
                                     <tr>
                                     <td>{{$item->id}}</td>
                                     <td> {{$item->fac_title}}</td>
                                     <td> {{$item->fac_code}}</td>
-                                    <td> {{$item->fac_name}}</td> 
-                                     <td> {{$item->fac_designtion}}</td> 
-                                      <td> {{$item->fac_join}}</td> 
-                                       <td> {{$item->fac_retirement}}</td> 
-                                        <td> {{$item->fac_phone}}</td> 
-                                        <td> {{$item->fac_status}}</td> 
-                                        <td> {{$item->fac_description}}</td> 
+
+                                     <td> {{$item->fac_designtion}}</td>
+                                      <td> {{$item->fac_join}}</td>
+                                       <td> {{$item->fac_retirement}}</td>
+                                        <td> {{$item->fac_phone}}</td>
+                                        <td> {{$item->fac_status}}</td>
+                                        <td> {{$item->fac_description}}</td>
                                     <td>
-                                        
+
                                         <th class="py-3 px-6 text-left">
                                             <a href="  {{ url('/faculty/edit',$item->id) }}">
                                                 <div class="inline-flex items-end">
@@ -146,8 +144,8 @@
                     @endforeach
                 </tbody>
             </table>
-                            
-                                   
+
+
         </div>
     </div>
         </div>

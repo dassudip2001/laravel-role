@@ -25,18 +25,31 @@ class FacultyController extends Controller
      */
     public function create(Request $request)
     {
-        $faculty=new Faculty;
-        $faculty->fac_name=$request->fac_name;
-        $faculty->fac_code=$request->fac_code;
-        $faculty->fac_title=$request->fac_title;
-        $faculty->fac_designtion=$request->fac_designtion;
-        $faculty->fac_join=$request->fac_join;
-        $faculty->fac_retirement=$request->fac_retirement;
-        $faculty->fac_phone=$request->fac_phone;
-        $faculty->fac_status=$request->fac_status;
-        $faculty->fac_description=$request->fac_description;
-        $faculty->save();
-        return redirect(route('faculty.index'));
+        try {
+            $faculty=new Faculty;
+//            $faculty->fac_name=$request->fac_name;
+            $faculty->fac_code=$request->fac_code;
+            $faculty->fac_title=$request->fac_title;
+            $faculty->fac_designtion=$request->fac_designtion;
+            $faculty->fac_join=$request->fac_join;
+            $faculty->fac_retirement=$request->fac_retirement;
+            $faculty->fac_phone=$request->fac_phone;
+            $faculty->fac_status=$request->fac_status;
+            $faculty->fac_description=$request->fac_description;
+            $faculty->save();
+            return redirect(route('faculty.index'));
+            return [
+                "message" => "Record created successfully.",
+                "status" => 201,
+            ];
+        }catch (Exception $e) {
+            return [
+                "message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
+
     }
 
     /**
@@ -84,7 +97,7 @@ class FacultyController extends Controller
     public function update(Request $request, $id)
     {
         $faculty= Faculty::find($id);
-        $faculty->fac_name=$request->fac_name;
+//        $faculty->fac_name=$request->fac_name;
         $faculty->fac_code=$request->fac_code;
         $faculty->fac_title=$request->fac_title;
         $faculty->fac_designtion=$request->fac_designtion;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\user\CreateUserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Faculty\FacultyController;
 use Illuminate\Support\Facades\Route;
@@ -18,15 +19,15 @@ use App\Http\Controllers\Admin\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Welcome page
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Dashboard Page
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
+//Admin Route
 Route::middleware(['auth','role:admin'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);
@@ -63,3 +64,10 @@ require __DIR__.'/auth.php';
    Route::get('/faculty/edit/{id}',[FacultyController::class,'edit'])->name('faculty.edit');
    Route::put('/faculty/edit/{id}',[FacultyController::class,'update'])->name('faculty.update');
    Route::get('/faculty/delete/{id}',[FacultyController::class,'destroy'])->name('faculty.destroy');
+
+// user create
+   Route::get('/createuser',[CreateUserController::class,'index'])->name('usercreate.index');
+   Route::post('/createuser',[CreateUserController::class,'create'])->name('usercreate.create');
+   Route::get('/createuser/edit/{id}',[CreateUserController::class,'edit'])->name('usercreate.update');
+   Route::put('/createuser/edit/{id}',[CreateUserController::class,'update'])->name('usercreate.update');
+   Route::get('/createuser/delet/{id}',[CreateUserController::class,'destroy'])->name('usercreate.destroy');
