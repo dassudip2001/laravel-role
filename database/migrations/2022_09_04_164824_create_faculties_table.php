@@ -18,11 +18,10 @@ class CreateFacultiesTable extends Migration
             $table->string('fac_code', 50)->unique()->index();
 //            $table->string('fac_name')->nullable();
             $table->string('fac_title');
-
             $table->string('fac_designtion');
             $table->date('fac_join');
             $table->date('fac_retirement');
-            $table->integer('fac_phone');
+            $table->string('fac_phone',12);
 //            $table->string('fac_email');
             $table->string('fac_status');
             $table->longText('fac_description')->nullable();
