@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Faculty;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Faculty;
+use Exception;
 class FacultyController extends Controller
 {
     /**
@@ -32,7 +33,9 @@ class FacultyController extends Controller
            $faculty->fac_title=$request->fac_title;
            $faculty->fac_designtion=$request->fac_designtion;
            $faculty->fac_join=$request->fac_join;
-           $faculty->fac_retirement=$request->fac_retirement;            $faculty->fac_phone=$request->fac_phone;            $faculty->fac_status=$request->fac_status;
+           $faculty->fac_retirement=$request->fac_retirement; 
+           $faculty->fac_phone=$request->fac_phone;    
+           $faculty->fac_status=$request->fac_status;
            $faculty->fac_description=$request->fac_description;
            $faculty->save();
            return redirect(route('faculty.index'));

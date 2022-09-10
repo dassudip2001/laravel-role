@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\FundingAgency;
-use Mosquitto\Exception;
+use Exception;
 
 class FundingAgencyController extends Controller
 {
@@ -74,7 +74,7 @@ class FundingAgencyController extends Controller
     public function edit($id)
     {
         $agency=FundingAgency::find($id);
-        return view('funding.editform',compact('agency'));
+        return view('funding.edit',compact('agency'));
     }
 
     /**
