@@ -35,7 +35,7 @@ class CreateUserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create(Request $request)
     {
@@ -55,10 +55,11 @@ class CreateUserController extends Controller
                 'fac_phone' => 'required',
                 'fac_status' => 'required',
                 'fac_description' => 'required',
+
             ]);
             $fields=$request->only(['name','email','password'
               ,'fac_code','fac_title','fac_join','fac_retirement',
-               'fac_designtion','fac_phone','fac_status','fac_description',
+               'fac_designtion','fac_phone','fac_status','fac_description','department_id',
 
             ]);
             $user = new User([
@@ -83,18 +84,12 @@ class CreateUserController extends Controller
 
             ]);
             $faculty->save();
-
             $pivot=new CreateUser();
             $pivot->user_id=$user->id;
             $pivot->faculty_id=$faculty->id;
-            $pivot->department_id=$faculty->id;
+            $pivot->department_id=$fields['department_id'];
             $pivot->save();
             return redirect(route('usercreate.index'));
-            return [
-                "message" => "Record created successfully.",
-
-                "status" => 201,
-            ];
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -132,7 +127,7 @@ class CreateUserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {

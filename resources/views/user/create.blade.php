@@ -51,9 +51,9 @@
                                              <div class="md:col-span-6">
                                                 <label for="fac_code">Faculty Department</label>
                                                 <br>
-                                                <select >
-                                                     @foreach ($data as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}
+                                                <select name="department_id">
+                                                     @foreach ($data as $department)
+                                                <option value="{{$department->id}}">{{$department->name}}
                                                 </option>
                                                 {{-- <input type="text" name="code" id="fac_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Faculty Department" /> --}}
                                                 @endforeach

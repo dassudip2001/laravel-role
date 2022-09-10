@@ -10,13 +10,17 @@ use Spatie\Permission\Traits\HasRoles;
 class CreateUser extends Model
 {
     use HasFactory,Notifiable, HasRoles;
+
+    /**
+     * @var string[]
+     */
     protected $fillable=[
 
        'id',
        'user_id',
        'faculty_id',
        'department_id'
-       
+
     ];
 
     public function user(){
