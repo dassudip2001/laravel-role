@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BudgetHead\BudgetHeadController;
+use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\FundingAgency\FundingAgencyController;
 use App\Http\Controllers\user\CreateUserController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Faculty\FacultyController;
@@ -70,4 +73,26 @@ require __DIR__.'/auth.php';
    Route::post('/createuser',[CreateUserController::class,'create'])->name('usercreate.create');
    Route::get('/createuser/edit/{id}',[CreateUserController::class,'edit'])->name('usercreate.update');
    Route::put('/createuser/edit/{id}',[CreateUserController::class,'update'])->name('usercreate.update');
-   Route::get('/createuser/delet/{id}',[CreateUserController::class,'destroy'])->name('usercreate.destroy');
+   Route::get('/createuser/delete/{id}',[CreateUserController::class,'destroy'])->name('usercreate.destroy');
+
+//   funding agency
+    Route::get('/funding',[FundingAgencyController::class,'index'])->name('funding.index');
+    Route::post('/funding',[FundingAgencyController::class,'create'])->name('funding.create');
+    Route::get('/funding/edit/{id}',[FundingAgencyController::class,'edit'])->name('funding.update');
+    Route::put('/funding/edit/{id}',[FundingAgencyController::class,'update'])->name('funding.update');
+    Route::get('/funding/delete/{id}',[FundingAgencyController::class,'destroy'])->name('funding.destroy');
+
+//    Budget Head
+    Route::get('/budget',[BudgetHeadController::class,'index'])->name('budget.index');
+    Route::post('/budget',[BudgetHeadController::class,'create'])->name('budget.create');
+    Route::get('/budget/edit/{id}',[BudgetHeadController::class,'edit'])->name('budget.update');
+    Route::put('/budget/edit/{id}',[BudgetHeadController::class,'update'])->name('budget.update');
+    Route::get('/budget/delete/{id}',[BudgetHeadController::class,'destroy'])->name('budget.destroy');
+
+//Project
+    Route::get('/project',[ProjectController::class,'index'])->name('project.index');
+    Route::post('/project',[ProjectController::class,'create'])->name('project.create');
+    Route::get('/project/edit/{id}',[ProjectController::class,'edit'])->name('project.update');
+    Route::put('/project/edit/{id}',[ProjectController::class,'update'])->name('project.update');
+    Route::get('/project/delete/{id}',[ProjectController::class,'destroy'])->name('project.destroy');
+

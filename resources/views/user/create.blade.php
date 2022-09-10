@@ -56,7 +56,8 @@
                                                 <option value="{{$item->id}}">{{$item->name}}
                                                 </option>
                                                 {{-- <input type="text" name="code" id="fac_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Faculty Department" /> --}}
-                                                @endforeach</select>
+                                                @endforeach
+                                            </select>
 
                                             </div>
 
