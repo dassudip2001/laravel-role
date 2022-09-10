@@ -4,6 +4,6 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    <h1>project page</h1>
     
 </x-admin-layout>

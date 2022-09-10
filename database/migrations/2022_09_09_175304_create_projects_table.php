@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('project_no')->unique();
             $table->string('project_title');
+            $table->string('project_scheme');
             $table->string('project_duration');
             $table->bigInteger('project_total_cost');
             $table->timestamps();
