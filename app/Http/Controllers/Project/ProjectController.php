@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Exceptions;
 
 class ProjectController extends Controller
 {
@@ -24,9 +25,25 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try {
+            $project=new Project;
+            $project->project_no=$request->project_no;
+            $project->project_title=$request->project_title;
+            $project->project_scheme=$request->project_scheme;
+            $project->project_duration=$request->project_duration;
+            $project->project_total_cost=$request->project_total_cost;
+            $project->save();
+            return redirect(route('project.index'));
+
+
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
@@ -59,7 +76,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project=Project::find($id);
+        return view('project.edit',compact('project'));
     }
 
     /**
@@ -71,7 +89,22 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $project=Project::find($id);
+            $project->project_no=$request->project_no;
+            $project->project_title=$request->project_title;
+            $project->project_scheme=$request->project_scheme;
+            $project->project_duration=$request->project_duration;
+            $project->project_total_cost=$request->project_total_cost;
+            $project->save();
+            return redirect(route('project.index'));
+
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
@@ -82,6 +115,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::destroy($id);
+        return redirect(route('project.index'));
+
     }
 }
