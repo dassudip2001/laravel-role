@@ -48,7 +48,7 @@
                                                 <input type="text" name="fac_code" id="fac_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Faculty Code" />
                                             </div>
 
-                                             <div class="md:col-span-6">
+                                            <div class="md:col-span-6">
                                                 <label for="fac_code">Faculty Department</label>
                                                 <br>
                                                 <select name="department_id">
@@ -57,7 +57,7 @@
                                                 </option>
                                                 {{-- <input type="text" name="code" id="fac_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="Faculty Department" /> --}}
                                                 @endforeach
-                                            </select>
+                                              </select>
 
                                             </div>
 

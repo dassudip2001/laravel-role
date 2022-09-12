@@ -12,7 +12,7 @@ use App\Models\Faculty;
 use App\Models\User;
 use App\Models\CreateUser;
 use Exception;
-//use Illuminate\Support\Facades\DB;
+
 
 class CreateUserController extends Controller
 {

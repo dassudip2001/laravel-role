@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProjectDetails\ProjectDetailsController;
 use App\Http\Controllers\BudgetHead\BudgetHeadController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\FundingAgency\FundingAgencyController;
@@ -96,3 +97,9 @@ require __DIR__.'/auth.php';
     Route::put('/project/edit/{id}',[ProjectController::class,'update'])->name('project.update');
     Route::get('/project/delete/{id}',[ProjectController::class,'destroy'])->name('project.destroy');
 
+// Project Details
+    Route::get('/projectdetail',[ProjectDetailsController::class,'index'])->name('projectdetail.index');
+    Route::post('/projectdetail',[ProjectDetailsController::class,'create'])->name('projectdetail.create');
+    Route::get('/projectdetail/edit/{id}',[ProjectDetailsController::class,'edit'])->name('projectdetail.update');
+    Route::put('/projectdetail/edit/{id}',[ProjectDetailsController::class,'update'])->name('projectdetail.update');
+    Route::get('/projectdetail/delete/{id}',[ProjectDetailsController::class,'destroy'])->name('projectdetail.destroy');
