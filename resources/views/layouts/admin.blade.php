@@ -5,11 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'VU') }}</title>
+        <title>{{ config('app.name', 'Vidyasagar University') }}</title>
+       <!--  Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+       <!-- jquery -->
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -67,7 +70,23 @@
             </main>
         </div>
     </div>
-    </body>
+      <script type="text/javascript">
+            $(document).ready(function(){
+                $('#add_btn').on('click',function(){
+                  var html='';
+                  html+='<tr>';
+                  html+='<td><input type="text" class="form-control form-control-sm" name="budget_title[]" placeholder="Enter Budget Title" ></td>';
+                  html+='<td><input type="number" class="form-control form-control-sm" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>';
+                  html+='<td><button type="button" class="btn btn-primary" id="remove" ><i class="fa-solid fa-trash"></i></button></td>';
+                  html+='</tr>';
+                              $('tbody').append(html);
+                })
+              });
+              $(document).on('click','#remove',function(){
+                $(this).closest('tr').remove();
+              });
+     </script>
+  </body>
 
 </html>
 
