@@ -25,12 +25,12 @@
                                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                             <div class="md:col-span-3">
                                                 <label for="name"> Department Name </label>
-                                                <input type="text" name="name" id="name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                                <input type="text" name="dept_name" id="dept_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                                             </div>
 
                                             <div class="md:col-span-3">
                                                 <label for="code">Department Code</label>
-                                                <input type="text" name="code" id="code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                                                <input type="text" name="dept_code" id="dept_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
                                             </div>
 
 
@@ -87,8 +87,8 @@
                         <td>
                           {{$item->id}}</td>
                         
-                        <td> {{$item->name}}</td>
-                        <td> {{$item->code}}</td>
+                        <td> {{$item->dept_name}}</td>
+                        <td> {{$item->dept_code}}</td>
                         <td> {{$item->description}}</td>
                         <td>
                             @role('admin')

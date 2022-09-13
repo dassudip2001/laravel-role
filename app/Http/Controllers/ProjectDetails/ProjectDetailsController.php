@@ -20,6 +20,7 @@ class ProjectDetailsController extends Controller
     public function index()
     {
 
+
         $data=FundingAgency::all();
 
         $data2=CreateUser::all();
@@ -34,7 +35,19 @@ class ProjectDetailsController extends Controller
      */
     public function create(Request $request)
     {
-       
+        try {
+            $this->validate($request,[
+
+            ]);
+
+        }catch (Exception $e)
+        {
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
+
     }
 
     /**

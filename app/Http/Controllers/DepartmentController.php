@@ -25,8 +25,8 @@ class DepartmentController extends Controller
     public function create(Request $request)
     {
         $department=new Department;
-        $department->name=$request->name;
-        $department->code =$request->code;
+        $department->dept_name=$request->dept_name;
+        $department->dept_code =$request->dept_code;
 
         $department->description=$request->description;
         $department->save();
@@ -77,8 +77,8 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
    {
        $department=Department::find($id);
-       $department->name=$request->name;
-       $department->code =$request->code;
+       $department->dept_name=$request->dept_name;
+       $department->dept_code =$request->dept_code;
 
        $department->description=$request->description;
        $department->save();
