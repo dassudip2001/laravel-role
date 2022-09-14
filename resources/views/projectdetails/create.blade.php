@@ -101,7 +101,7 @@
             <tr>
               <td><input type="text" class="form-control form-control-sm" name="budget_title[]" placeholder="Enter Budget Title" ></td>
               <td><input type="number" class="form-control form-control-sm" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>
-              <td><button type="button" id="add_btn" ><i class="fa-regular fa-square-plus"></i></button></td>
+              <td><button type="button" class="btn btn-primary" id="add_btn" ><i class="fa-regular fa-square-plus"></i></button></td>
             </tr>
           </tbody>
 

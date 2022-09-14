@@ -2,10 +2,12 @@
 
 #install
 
--   php 7.3
--   mysql
-    -composer
-    -node js
+- php 7.3
+-  mysql
+- composer
+- node js
+- font-awesome 6.2.0
+- bootstrap 5.2.0
 
 ## Step To Run The Project
 

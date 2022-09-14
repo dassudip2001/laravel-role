@@ -7,6 +7,7 @@
     <div class="container text-center mt-4">
   <div class="row">
     <div class="col">
+    @role('admin')
       <div class="card">
         <form action=" " method="POST">
           @csrf
@@ -26,6 +27,7 @@
 
         </form>                
         </div>
+        @endrole
       </div>
     </div>
     <div class="col">
@@ -42,7 +44,9 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Funding Agency Name</th>
+              @role('admin')
               <th scope="col">Action</th>
+              @endrole
             </tr>
            </thead>
          <tbody>
@@ -50,12 +54,14 @@
            <tr>            
              <td>{{$item->id}}</td>                       
              <td> {{$item->agency_name}}</td>
-             <th>             
+             <th> 
+             @role('admin')            
              <a href=" {{ url('/funding/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
             <a href=" {{ url('/funding/delete',$item->id) }} ">
              <i class="fa-solid fa-trash" style=""></i>
+             @endrole
              </th>
              <th> 
                 </a>

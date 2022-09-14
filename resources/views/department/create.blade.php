@@ -4,9 +4,12 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+
 <div class="container text-center mt-4">
   <div class="row">
+ 
     <div class="col">
+    @role('admin')
       <div class="card">
         <form action="/department" method="POST">
           @csrf
@@ -41,11 +44,13 @@
              <!-- Button -->
              
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-
-        </form>                
+            
+        </form>               
         </div>
+        @endrole
       </div>
     </div>
+    
     <div class="col">
       <div class="card">
         <div class="card-title mt-2">
@@ -62,7 +67,9 @@
               <th scope="col">Department Name</th>
               <th scope="col">Code</th>
               <th scope="col">Description</th>
+              @role('admin')
               <th scope="col">Action</th>
+              @endrole
             </tr>
            </thead>
          <tbody>
@@ -75,7 +82,7 @@
              <td> {{$item->dept_code}}</td>
              <td> {{$item->description}}</td>
              <th> 
-             
+              @role('admin')
              <a href=" {{ url('/department/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
@@ -83,7 +90,7 @@
 
             <a href=" {{ url('/department/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
-             
+             @endrole
              </th>
              <th> 
                 </a>

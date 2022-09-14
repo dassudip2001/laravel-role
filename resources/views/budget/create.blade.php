@@ -7,6 +7,7 @@
     <div class="container text-center mt-4">
   <div class="row">
     <div class="col">
+    @role('admin')
       <div class="card">
         <form action=" " method="POST">
           @csrf
@@ -20,7 +21,7 @@
                  <!-- Budget Name -->
             <div class="mb-6">
                <label for="budget_title">Budget Title<span class="required" style="color: red;">*</span></label>
-               <input type="text" class="form-control form-control-sm" name="budget_title"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Department Name">   
+               <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Department Name">   
              </div>
                </div>
                <div class="col">
@@ -40,6 +41,7 @@
 
         </form>                
         </div>
+       @endrole
       </div>
     </div>
     <div class="col">
@@ -57,7 +59,9 @@
               <th scope="col">#</th>
               <th scope="col">Budget Title</th>
               <th scope="col">Budget Type</th>
+              @role('admin')
               <th scope="col">Action</th>
+              @endrole
             </tr>
            </thead>
          <tbody>
@@ -66,12 +70,14 @@
              <td>{{$item->id}}</td>                       
              <td> {{$item->budget_title}}</td>
              <td> {{$item->budget_title}}</td>
-             <th>              
+             <th> 
+             @role('admin')             
              <a href=" {{ url('/budget/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
             <a href=" {{ url('/budget/delete',$item->id) }} ">
              <i class="fa-solid fa-trash" style=""></i>
+             @endrole
              </th>
              <th> 
                 </a>
