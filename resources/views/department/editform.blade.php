@@ -4,55 +4,44 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div>
-                <div class="min-h-screen py-12 bg-gray-100 flex ">
-                    <div class="container max-w-screen-lg mx-auto">
-
-
-                        <form action=" " method="POST">      
-                            @csrf
-                            @method('PUT')
-                            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                                <div class="grid gap-1 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                                    <div class="text-gray-600">
-                                        <p class="font-medium text-lg">Edit Department Details</p>
-                                        <p>Please edit the form.</p>
-                                    </div>
-
-                                    <div class="lg:col-span-2">
-                                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                                            <div class="md:col-span-3">
-                                                <label for="name"> Department Name </label>
-                                                <input type="text" name="dept_name" id="name" value="{{$department->name}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                                            </div>
-
-                                            <div class="md:col-span-3">
-                                                <label for="code">Department Code</label>
-                                                <input type="text" name="dept_code" id="code" value="{{$department->code}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                                            </div>
-
-
-
-                                            <div class="md:col-span-6">
-                                                <label for="describption">Department Describption</label>
-                                                <input type="text" name="description" id="describption" value="{{$department->description}}" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-                                            </div>
-
-                                            <div class="md:col-span-6 text-right">
-                                                <div class="inline-flex items-end">
-                                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </form>
+<div class="container text-center mt-4">
+  <div class="card">
+    <div class="card-title mt-2">
+        <h6>Edit Department Details</h6>
+        <hr>
+    </div>
+    
+    <div class="card-body">
+    <form action=" " method="POST"> 
+    @csrf
+    @method('PUT')
+    <div class="row">
+               <div class="col">
+                 <!-- Department Name -->
+            <div class="mb-6">
+               <label for="department_name">Department Name</label>
+               <input type="text" class="form-control form-control-sm" name="dept_name" value="{{$department->dept_name}}"  id="department_name" aria-describedby="department_name" placeholder="Enter Department Name">   
+             </div>
+               </div>
+               <div class="col">
+                  <!-- Department code -->
+                    <div class="mb-6">
+                      <label for="department_code">Department Code</label>
+                      <input type="text" class="form-control form-control-sm" value="{{$department->dept_code}}" name="dept_code"  id="department_code" aria-describedby="department_code" placeholder="Enter Department Code">   
                     </div>
-                </div>3</div>
-            <div>
+                   </div>
+                </div>
+            
+             
+             <!-- Department Details -->
+             <div class="mb-6">
+               <label for="department_details">Department Details</label>
+               <input type="text" class="form-control form-control-sm" name="description" value="{{$department->description}}" id="department_details" aria-describedby="department_details" placeholder="Enter Department Description">   
+             </div>
+             <!-- Button -->
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">update</button>    
+    </form>
+    </div>
+    </div>
+</div>
 </x-admin-layout>

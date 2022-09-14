@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'VU'),
+    'name' => env('APP_NAME', 'Vidyasagar University'),
 
     /*
     |--------------------------------------------------------------------------
