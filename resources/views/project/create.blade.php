@@ -22,7 +22,7 @@
                     <div class="col">
                         <!-- Project no -->
                         <div class="mb-6">
-                          <label for="project_no">Project NO<span class="required" style="color: red;">*</span></label>
+                          <label for="project_no">Project No<span class="required" style="color: red;">*</span></label>
                           <input type="text" class="form-control form-control-sm" name="project_no"  id="project_no" aria-describedby="project_no" placeholder="Enter  Project No">   
                         </div>
                     </div>
@@ -76,11 +76,11 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Project No</th>
-                            <th scope="col">Project Title</th>
-                            <th scope="col">Project Scheme</th>
-                            <th scope="col">Project Duration</th>
-                            <th scope="col">Project Cost</th>
+                            <th scope="col"> No</th>
+                            <th scope="col"> Title</th>
+                            <th scope="col"> Scheme</th>
+                            <th scope="col"> Duration</th>
+                            <th scope="col"> Cost</th>
                             @role('admin')
                             <th scope="col">Action</th>
                             @endrole

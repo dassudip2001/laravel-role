@@ -4,11 +4,11 @@
            {{ __('Dashboard') }}
         </h2>
     </x-slot>
-  <div class="container text-center mt-4 ">
+  <div class="container  mt-4 ">
    <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-title mt-2">
+        <div class="card-title mt-2 mx-2">
           <div class="h5">Create New Project</div>
           <hr>
         </div>
@@ -29,15 +29,16 @@
              </div>
              </div>
         </div>
-        <hr>
+     
         <div class="row">
     <div class="col">
     <div class="mb-6">
         <label for="funding_agency">Funding Agency<span class="required" style="color: red;">*</span></label>
         <br>
-        <select name="department_id">
-            @foreach ($data as $funding)
-             <option value="{{$funding->id}}">{{$funding->agency_name}}
+        <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected hidden>Select</option>  
+          @foreach ($data as $funding)
+            <option value="{{$funding->id}}">{{$funding->agency_name}}
                 </option>
             @endforeach
         </select>   
@@ -47,23 +48,33 @@
     <div class="mb-6">
         <label for="name">Principle Investigator<span class="required" style="color: red;">*</span></label>
         <br>
-        <select name="department_id">
+        <div class="row">
+          <div class="col">
+            <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected hidden>Select</option>
             @foreach ($data as $funding)
              <option value="{{$funding->id}}">{{$funding->agency_name}}
                 </option>
             @endforeach
-        </select> 
-        <select name="department_id">
+        </select>
+      </div>
+          <div class="col">
+             <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected hidden>Select</option>
             @foreach ($data as $funding)
              <option value="{{$funding->id}}">{{$funding->agency_name}}
                 </option>
             @endforeach
-        </select> 
+        </select>
+      </div> 
+       
+      </div>
+         
       </div>
     </div>
     
   </div>
-  <hr>
+  
       <div class="row g-2">
            <div class="col-md">
              <div >
@@ -84,8 +95,9 @@
              </div>
              </div>
         </div>
-        <hr>
+        
         <div class="card-title overflow-auto">
+          <hr>
           <h6>Budget Details </h6>
           <hr>
         </div>
@@ -101,7 +113,7 @@
             <tr>
               <td><input type="text" class="form-control form-control-sm" name="budget_title[]" placeholder="Enter Budget Title" ></td>
               <td><input type="number" class="form-control form-control-sm" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>
-              <td><button type="button" class="btn btn-primary" id="add_btn" ><i class="fa-regular fa-square-plus"></i></button></td>
+              <td><button type="button" id="add_btn" ><i class="fa-regular fa-square-plus"></i></button></td>
             </tr>
           </tbody>
 
@@ -122,7 +134,7 @@
            </div>
          </div>
          <hr>
-       <button type="submit" class="btn btn-primary">Submit</button>
+       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </form>
         </div>
       </div>
@@ -131,4 +143,3 @@
   </div>
 
 </x-admin-layout>
-
