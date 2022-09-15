@@ -131,7 +131,8 @@ class CreateUserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit');
+        $createUser=CreateUser::find($id);
+        return view('user.edit',compact('createUser'));
     }
 
     /**
@@ -143,7 +144,15 @@ class CreateUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+
+
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
@@ -154,6 +163,7 @@ class CreateUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CreateUser::destroy($id);
+
     }
 }

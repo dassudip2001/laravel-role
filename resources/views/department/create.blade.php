@@ -7,7 +7,6 @@
 
 <div class="container text-center mt-4">
   <div class="row">
- 
     <div class="col">
     @role('admin')
       <div class="card">
@@ -34,30 +33,24 @@
                     </div>
                    </div>
                 </div>
-            
-             
              <!-- Department Details -->
              <div class="mb-6">
                <label for="department_details">Department Details</label>
                <input type="text" class="form-control form-control" name="description"  id="department_details" aria-describedby="department_details" placeholder="Enter Department Description">   
              </div>
              <!-- Button -->
-             
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-            
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>            
         </form>               
         </div>
         @endrole
       </div>
     </div>
-    
     <div class="col">
       <div class="card">
         <div class="card-title mt-2">
             <h6>Department Details</h6>
             <hr>
-        </div>
-        
+        </div>        
         <!-- <div class="card-body"> -->
          <!-- output -->
          <table class="table">
@@ -74,10 +67,8 @@
            </thead>
          <tbody>
             @foreach ($department as $item)
-           <tr>
-             
-             <td>{{$item->id}}</td>
-                        
+           <tr>            
+             <td>{{$item->id}}</td>                        
              <td> {{$item->dept_name}}</td>
              <td> {{$item->dept_code}}</td>
              <td> {{$item->description}}</td>
@@ -86,8 +77,6 @@
              <a href=" {{ url('/department/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
-            
-
             <a href=" {{ url('/department/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
