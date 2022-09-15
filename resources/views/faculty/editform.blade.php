@@ -4,84 +4,87 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-title mx-3 my-2">
+            <h6>Edit Faculty Details</h6>
+            <hr>
+        </div>
+<div class="card-body">
+    <form action="" method="POST">
+    @csrf
+    @method('PUT')
 
-                 <div class="min-h-screen py-12 bg-gray-100 flex ">
-                    <div class="container max-w-screen-lg mx-auto">
-
-
-                        <form action=" " method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                                <div class="grid gap-1 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                                    <div class="text-gray-600">
-                                        <p class="font-medium text-lg">Faculty</p>
-                                        <p>Please fill out all the fields.</p>
-                                    </div>
-
-                                    <div class="lg:col-span-2">
-                                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                                            <div class="md:col-span-3">
-                                                <label for="fac_title"> Faculty Title </label>
-                                                <input type="text" name="fac_title" id="fac_title" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_title}}" placeholder="" />
-                                            </div>
-
-                                            <div class="md:col-span-3">
-                                                <label for="fac_name">Faculty Name</label>
-                                                <input type="text" name="fac_name" id="fac_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_title}}" placeholder="" />
-                                            </div>
-
-
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_code">Faculty Code</label>
-                                                <input type="text" name="fac_code" id="fac_code" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_title}}" />
-                                            </div>
-
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_designtion">Faculty Designtion</label>
-                                                <input type="text" name="fac_designtion" id="fac_designtion" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_title}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_join">Faculty Join</label>
-                                                <input type="text" name="fac_join" id="fac_join" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_join}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_retirement">Faculty Retirement</label>
-                                                <input type="text" name="fac_retirement" id="fac_retirement" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_retirement}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_phone">Faculty Phone</label>
-                                                <input type="number" name="fac_phone" id="fac_phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_phone}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_status">Faculty Status</label>
-                                                <input type="text" name="fac_status" id="fac_status" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_status}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6">
-                                                <label for="fac_description">Faculty Description</label>
-                                                <input type="text" name="fac_description" id="fac_description" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$faculty->fac_description}}" />
-                                            </div>
-
-                                            <div class="md:col-span-6 text-right">
-                                                <div class="inline-flex items-end">
-                                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </form>
-                    </div>
-                </div>3</div>
+    <div class="row">
+        <div class="col">
+            <!-- Faculty Title -->
+            <div class="mb-6">
+            <label for="faculty_title">Faculty Title</label>
+            <input type="text" class="form-control form-control-sm" name="fac_title"  id="faculty_title" aria-describedby="faculty_title" value="{{$faculty->fac_title}}" placeholder="Enter  Faculty Title">   
+            </div>
+        </div>
+        <div class="col">
+             <!-- Faculty Code -->
+            <div class="mb-6">
+             <label for="faculty_code">Faculty Code</label>
+            <input type="text" class="form-control form-control-sm" name="fac_code"  id="faculty_code" aria-describedby="faculty_code" value="{{$faculty->fac_code}}"  placeholder="Enter  Faculty Code">   
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Faculty Designation -->
+            <div class="mb-6">
+            <label for="faculty_designation">Faculty Designation</label>
+            <input type="text" class="form-control form-control-sm" name="fac_designtion"  id="faculty_designation" aria-describedby="faculty_designation" value="{{$faculty->fac_designtion}}"  placeholder="Enter  Faculty Designation">   
+            </div>
+        </div>
+        <div class="col">
+            <!-- Faculty Join -->
+            <div class="mb-6">
+            <label for="faculty_join">Faculty Join</label>
+            <input type="text" class="form-control form-control-sm" name="fac_join"  id="faculty_join" aria-describedby="faculty_join" value="{{$faculty->fac_join}}"  placeholder="Enter  Faculty Join">   
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Faculty Retirement -->
+            <div class="mb-6">
+            <label for="faculty_retirement">Faculty Retirement</label>
+            <input type="text" class="form-control form-control-sm" name="fac_retirement"  id="faculty_retirement" aria-describedby="faculty_retirement" value="{{$faculty->fac_retirement}}"  placeholder="Enter  Faculty Retirement">   
+            </div>
+        </div>
+        <div class="col">
+            <!-- Faculty Phone -->
+            <div class="mb-6">
+            <label for="faculty_phone">Faculty Phone</label>
+            <input type="text" class="form-control form-control-sm" name="fac_phone"  id="faculty_phone" aria-describedby="faculty_phone" value="{{$faculty->fac_phone}}"  placeholder="Enter  Faculty Phone Number">   
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Faculty Status -->
+        <div class="mb-6">
+        <label for="faculty_status">Faculty Status</label>
+        <input type="text" class="form-control form-control-sm" name="fac_status"  id="faculty_status" aria-describedby="faculty_status" value="{{$faculty->fac_status}}"  placeholder="Enter  Faculty Status">   
+        </div>
+        </div>
+        <div class="col">
+            <!-- Faculty Description -->
+        <div class="mb-6">
+            <label for="faculty_description">Faculty Description</label>
+            <input type="text" class="form-control form-control-sm" name="fac_description"  id="faculty_description" aria-describedby="faculty_description" value="{{$faculty->fac_description}}"  placeholder="Faculty Description">   
+        </div>
+        </div>
+    </div>
+    </div>
+        <div class="mx-3 my-1">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+    </div>
+    </div>
+    
+    </form>
+</div>
 </x-admin-layout>    
