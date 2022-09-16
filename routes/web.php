@@ -71,35 +71,35 @@ require __DIR__.'/auth.php';
 
 // user create
    Route::get('/createuser',[CreateUserController::class,'index'])->name('usercreate.index');
-   Route::post('/createuser',[CreateUserController::class,'create'])->name('usercreate.create')->middleware(['auth','role:admin']);;
-   Route::get('/createuser/edit/{id}',[CreateUserController::class,'edit'])->name('usercreate.edit');
+   Route::post('/createuser',[CreateUserController::class,'create'])->name('usercreate.create')->middleware(['auth','role:admin']);
+   Route::get('/createuser/edit/{id}',[CreateUserController::class,'edit'])->name('usercreate.edit')->middleware(['auth','role:admin']);
    Route::put('/createuser/edit/{id}',[CreateUserController::class,'update'])->name('usercreate.update');
    Route::get('/createuser/delete/{id}',[CreateUserController::class,'destroy'])->name('usercreate.destroy');
 
 //   funding agency
     Route::get('/funding',[FundingAgencyController::class,'index'])->name('funding.index');
-    Route::post('/funding',[FundingAgencyController::class,'create'])->name('funding.create')->middleware(['auth','role:admin']);;
+    Route::post('/funding',[FundingAgencyController::class,'create'])->name('funding.create')->middleware(['auth','role:admin']);
     Route::get('/funding/edit/{id}',[FundingAgencyController::class,'edit'])->name('funding.update');
     Route::put('/funding/edit/{id}',[FundingAgencyController::class,'update'])->name('funding.update');
     Route::get('/funding/delete/{id}',[FundingAgencyController::class,'destroy'])->name('funding.destroy');
 
 //    Budget Head
     Route::get('/budget',[BudgetHeadController::class,'index'])->name('budget.index');
-    Route::post('/budget',[BudgetHeadController::class,'create'])->name('budget.create')->middleware(['auth','role:admin']);;
+    Route::post('/budget',[BudgetHeadController::class,'create'])->name('budget.create')->middleware(['auth','role:admin']);
     Route::get('/budget/edit/{id}',[BudgetHeadController::class,'edit'])->name('budget.update');
     Route::put('/budget/edit/{id}',[BudgetHeadController::class,'update'])->name('budget.update');
     Route::get('/budget/delete/{id}',[BudgetHeadController::class,'destroy'])->name('budget.destroy');
 
 //Project
     Route::get('/project',[ProjectController::class,'index'])->name('project.index');
-    Route::post('/project',[ProjectController::class,'create'])->name('project.create');
-    Route::get('/project/edit/{id}',[ProjectController::class,'edit'])->name('project.update')->middleware(['auth','role:admin']);;
-    Route::put('/project/edit/{id}',[ProjectController::class,'update'])->name('project.update');
-    Route::get('/project/delete/{id}',[ProjectController::class,'destroy'])->name('project.destroy');
+    Route::post('/project',[ProjectController::class,'create'])->name('project.create')->middleware(['auth','role:admin']);
+    Route::get('/project/edit/{id}',[ProjectController::class,'edit'])->name('project.update')->middleware(['auth','role:admin']);
+    Route::put('/project/edit/{id}',[ProjectController::class,'update'])->name('project.update')->middleware(['auth','role:admin']);
+    Route::get('/project/delete/{id}',[ProjectController::class,'destroy'])->name('project.destroy')->middleware(['auth','role:admin']);
 
 // Project Details
     Route::get('/projectdetail',[ProjectDetailsController::class,'index'])->name('projectdetail.index');
-    Route::post('/projectdetail',[ProjectDetailsController::class,'create'])->name('projectdetail.create')->middleware(['auth','role:admin']);;
-    Route::get('/projectdetail/edit/{id}',[ProjectDetailsController::class,'edit'])->name('projectdetail.update');
-    Route::put('/projectdetail/edit/{id}',[ProjectDetailsController::class,'update'])->name('projectdetail.update');
-    Route::get('/projectdetail/delete/{id}',[ProjectDetailsController::class,'destroy'])->name('projectdetail.destroy');
+    Route::post('/projectdetail',[ProjectDetailsController::class,'create'])->name('projectdetail.create')->middleware(['auth','role:admin']);
+    Route::get('/projectdetail/edit/{id}',[ProjectDetailsController::class,'edit'])->name('projectdetail.update')->middleware(['auth','role:admin']);
+    Route::put('/projectdetail/edit/{id}',[ProjectDetailsController::class,'update'])->name('projectdetail.update')->middleware(['auth','role:admin']);
+    Route::get('/projectdetail/delete/{id}',[ProjectDetailsController::class,'destroy'])->name('projectdetail.destroy')->middleware(['auth','role:admin']);

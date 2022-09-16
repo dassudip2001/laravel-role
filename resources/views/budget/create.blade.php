@@ -21,14 +21,14 @@
                  <!-- Budget Name -->
             <div class="mb-6">
                <label for="budget_title">Budget Title<span class="required" style="color: red;">*</span></label>
-               <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Department Name">   
+               <input type="text" class="form-control form-control-sm" name="budget_title"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Department Name">   
              </div>
                </div>
                <div class="col">
                   <!-- Budget code -->
                     <div class="mb-6">
                       <label for="budget_type">Budget Type<span class="required" style="color: red;">*</span></label>
-                      <input type="text" class="form-control form-control-sm" name="budget_title"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Department Code">   
+                      <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Department Code">   
                     </div>
                    </div>
                 </div>
@@ -57,8 +57,8 @@
            <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Budget Title</th>
               <th scope="col">Budget Type</th>
+              <th scope="col">Budget Title</th>
               @role('admin')
               <th scope="col">Action</th>
               @endrole
@@ -68,7 +68,7 @@
             @foreach ($budget as $item)
            <tr>            
              <td>{{$item->id}}</td>                       
-             <td> {{$item->budget_title}}</td>
+             <td> {{$item->budget_type}}</td>
              <td> {{$item->budget_title}}</td>
              <th> 
              @role('admin')             

@@ -41,22 +41,16 @@ class ProjectDetailsController extends Controller
     {
         try {
             $this->validate($request,[
-//                project
                  'project_no'=>'required',
                  'project_title'=>'required',
                  'project_scheme'=>'required',
                  'project_duration'=>'required',
                  'project_total_cost'=>'required',
-//                funding agency
-//                 'agency_name'=>'required',
-////                 Budget
-//                 'budget_title'=>'required',
-//                 'budget_type'=>'required',
 
             ]);
             $fields=$request->only(['project_no','project_title','project_scheme',
                 'project_duration','project_total_cost',
-               'funding_agency_id','create_user_id',
+               'funding_agency_id','create_user_id','budget_id',
 
             ]);
             $project=new Project([
@@ -71,7 +65,7 @@ class ProjectDetailsController extends Controller
             $pivot->project_id=$project->id;
             $pivot->funding_agency_id=$fields['funding_agency_id'];
             $pivot->create_user_id=$fields['create_user_id'];
-
+            $pivot->budget_id=$fields['budget_id'];
             $pivot->save();
             return redirect(route('projectdetail.index'));
 

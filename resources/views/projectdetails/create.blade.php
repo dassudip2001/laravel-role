@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-{{--           {{ __('Dashboard') }}--}}
+           {{ __('Dashboard') }}
         </h2>
     </x-slot>
   <div class="container  mt-4 ">
@@ -112,9 +112,26 @@
           </thead>
           <tbody">
             <tr>
-              <td><input type="text" class="form-control form-control-sm" name="budget_title[]" placeholder="Enter Budget Title" ></td>
-              <td><input type="number" class="form-control form-control-sm" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>
-              <td><button type="button" id="add_btn" class="mx-3" ><i class="fa-regular fa-square-plus "></i></button></td>
+                <td>
+                    <select name="budget_id" class="form-select form-select-sm"  id="clear1" aria-label=".form-select-sm example">
+                        <option selected hidden>Select </option>
+                        @foreach($budget as $bgt)
+                            <option value="{{$bgt->id}}">{{$bgt->budget_title}}
+                            </option>
+                    @endforeach
+                </td>
+
+                <td><input type="number" class="form-control form-control-sm" name="budget_amount[]" id="clear" placeholder="Enter Budget Amount" ></td>
+                <td>
+                    <button type="button" id="add_btn" >
+                        <i class="fa-regular fa-square-plus">
+
+                        </i>
+                    </button>
+                    <button onclick="document.getElementById('clear1').value = null; document.getElementById('clear').value = null; return false;">
+                        <i class="fa-solid fa-brush"></i>
+                    </button>
+                </td>
             </tr>
           </tbody>
 
