@@ -11,9 +11,11 @@ class ProjectDetails extends Model
 {
     use HasFactory,Notifiable, HasRoles;
     protected $fillable=[
+        'id',
         'project_id',
         'funding_agency_id',
         'create_user_id',
+        'budget_id',
     ];
     public function project(){
         return $this->belongsTo(Project::class,'project_id','id');
@@ -24,5 +26,8 @@ class ProjectDetails extends Model
     }
     public function createuser(){
         return $this->belongsTo(CreateUser::class,'create_user_id','id');
+    }
+    public function budgethead(){
+        return $this->belongsTo(BudgetHead::class,'budget_id','id');
     }
 }
