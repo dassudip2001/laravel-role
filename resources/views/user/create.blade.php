@@ -5,14 +5,9 @@
         </h2>
     </x-slot>
 <div class="container  mt-4">
-  <!-- <div class="row">
+  <div class="row">
     <div class="col">
-
-    
-    </div>
-    <div class="col"></div>
-  </div> -->
-    <div class="card">
+      <div class="card">
         <!-- card Title -->
         <div class="card-title m-2">
             <h6>Create User </h6>
@@ -141,5 +136,53 @@
 
         </div>
     </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-title mt-2 mx-2">
+          <h6>Edit User Details</h6>
+          <hr>
+        </div>
+        <div class="card-body">
+          <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"> User Code</th>
+              <th scope="col">User Name</th>
+              <th scope="col">User Email</th>
+              @role('admin')
+              <th scope="col">Action</th>
+              @endrole
+            </tr>
+           </thead>
+         <tbody>
+            <!-- @foreach ($department as $item) -->
+           <tr>
+             <td></td>
+             <td></td>
+             <td> </td>
+             <td></td>
+             <th>
+              @role('admin')
+             <a href=" {{ url('/createuser/edit') }} ">
+             <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <a href=" {{ url('/createuser/delete') }} ">
+            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+             @endrole
+             </th>
+             <th>
+                </a>
+            </th>
+          </tr>
+          <!-- @endforeach -->
+        </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+    
 </div>
 </x-admin-layout>

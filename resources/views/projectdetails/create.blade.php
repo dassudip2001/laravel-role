@@ -59,16 +59,6 @@
                 @endforeach
         </select>
       </div>
-{{--          <div class="col">--}}
-{{--             <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">--}}
-{{--              <option selected hidden>Select</option>--}}
-
-{{--             <option value="{{$funding->dept_name}}">--}}
-{{--                </option>--}}
-{{--            @endforeach--}}
-{{--        </select>--}}
-{{--      </div>--}}
-
       </div>
 
       </div>
@@ -154,6 +144,53 @@
          <hr>
        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Project</button>
     </form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <!-- card Head  -->
+        <div class="card-title mx-2 mt-2">
+        <h6>Edit Project Details</h6>
+        <hr>
+        </div>
+        <!-- card Body -->
+        <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"> Project No</th>
+              <th scope="col">Project Code</th>
+              <th scope="col">Project cost</th>
+              @role('admin')
+              <th scope="col">Action</th>
+              @endrole
+            </tr>
+           </thead>
+         <tbody>
+           
+           <tr>
+             <td></td>
+             <td></td>
+             <td> </td>
+             <td></td>
+             <th>
+              @role('admin')
+             <a href=" {{ url('/createuser/edit') }} ">
+             <i class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <a href=" {{ url('/createuser/delete') }} ">
+            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+             @endrole
+             </th>
+             <th>
+                </a>
+            </th>
+          </tr>
+          
+        </tbody>
+          </table>
         </div>
       </div>
     </div>
