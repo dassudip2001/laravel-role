@@ -9,6 +9,11 @@
     <div class="col">
     @role('admin')
       <div class="card">
+      @if(session('success'))
+              <div class="alert alert-success">
+                  {{session('success')}}
+              </div>
+      @endif
         <form action=" " method="POST">
           @csrf
             <div class="card-title mt-2">

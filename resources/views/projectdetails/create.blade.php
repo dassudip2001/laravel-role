@@ -8,6 +8,12 @@
    <div class="row">
     <div class="col">
       <div class="card">
+        <!-- success massage -->
+      @if(session('success'))
+              <div class="alert alert-success">
+                  {{session('success')}}
+              </div>
+       @endif
         <div class="card-title mt-2 mx-2">
           <div class="h5">Create New Project</div>
           <hr>

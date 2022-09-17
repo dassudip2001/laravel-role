@@ -33,7 +33,7 @@ class BudgetHeadController extends Controller
             $budget->budget_title=$request->budget_title;
             $budget->budget_type=$request->budget_type;
             $budget->save();
-            return redirect(route('budget.index'));
+            return redirect(route('budget.index'))->with('success','Budget Created Successfully');
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -90,7 +90,7 @@ class BudgetHeadController extends Controller
             $budget->budget_title=$request->budget_title;
             $budget->budget_type=$request->budget_type;
             $budget->save();
-            return redirect(route('budget.index'));
+            return redirect(route('budget.index'))->with('success','Budget Update Successfully');
 
         } catch (Exception $e)
         {
@@ -109,6 +109,6 @@ class BudgetHeadController extends Controller
     public function destroy($id)
     {
         BudgetHead::destroy($id);
-        return redirect(route('budget.index'));
+        return redirect(route('budget.index'))->with('success','Budget delete Successfully');
     }
 }

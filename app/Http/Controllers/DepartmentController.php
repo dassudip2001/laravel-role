@@ -30,8 +30,7 @@ class DepartmentController extends Controller
 
         $department->description=$request->description;
         $department->save();
-        return redirect(route('index'))->with('mass
-        age','Department Created Successfully');
+        return redirect(route('index'))->with('success','Department Created Successfully');
     }
 
     /**
@@ -83,7 +82,7 @@ class DepartmentController extends Controller
 
        $department->description=$request->description;
        $department->save();
-       return redirect(route('index'));
+       return redirect(route('index'))->with('success','Department Update Successfully');
         // $reqData = $request->only(['name', 'description', 'code']);
 
         // $department =  Department::find($id);
@@ -114,6 +113,6 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         Department::destroy($id);
-        return redirect(route('index'));
+        return redirect(route('index'))->with('success','Department Delete Successfully');
     }
 }

@@ -11,7 +11,6 @@
             <hr>
         </div>
         <div class="card-body">
-
         <form action=" " method="POST">
          @csrf
          @method('PUT')
@@ -53,10 +52,10 @@
         <br>
         <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
           <option selected hidden>Select Faculty Department </option>
-          @foreach ($data as $department)
-            <option value="{{$department->id}}">{{$department->dept_name}}
+         
+            <option value=""
                 </option>
-            @endforeach
+          
         </select>
       </div>
             </div>
@@ -73,7 +72,7 @@
                <!-- Faculty Join Date -->
                <div class="mb-6">
                 <label for="faculty_join">Faculty Join<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_join" value=""  id="faculty_join" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
+                <input type="date" class="form-control form-control-sm" name="fac_join" value=""  id="faculty_join" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
               </div>
             </div>
          </div>
@@ -82,7 +81,7 @@
                 <!-- Faculty Retirement Date -->
                 <div class="mb-6">
                 <label for="faculty_retirement">Faculty Retirement<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_retirement" value=""  id="faculty_retirement" aria-describedby="faculty_retirement" placeholder="Enter  Faculty Retirement">
+                <input type="date" class="form-control form-control-sm datepicker" name="fac_retirement" value=""  id="datepicker" aria-describedby="faculty_retirement" placeholder="Enter  Faculty Retirement">
               </div>
             </div>
             <div class="col">
@@ -109,7 +108,6 @@
               </div>
             </div>
          </div>
-
          <div class="row">
             <div class="col">
                 <!-- password -->
@@ -128,10 +126,7 @@
          </div>
          <!-- Button -->
          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create User</button>
-
         </form>
-
-
         </div>
     </div>
 </div>

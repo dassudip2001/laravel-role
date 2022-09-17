@@ -33,7 +33,7 @@ class FundingAgencyController extends Controller
             $agency=new FundingAgency;
             $agency->agency_name=$request->agency_name;
             $agency->save();
-            return redirect(route('funding.index'));
+            return redirect(route('funding.index'))->with('success','Funding Agency Created Successfully');
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -91,7 +91,7 @@ class FundingAgencyController extends Controller
             $agency=FundingAgency::find($id);
         $agency->agency_name=$request->agency_name;
         $agency->save();
-        return redirect(route('funding.index'));
+        return redirect(route('funding.index'))->with('success','Funding Agency Update Successfully');
 
         } catch (Exception $e)
         {
@@ -112,6 +112,6 @@ class FundingAgencyController extends Controller
     public function destroy($id)
     {
         FundingAgency::destroy($id);
-        return redirect(route('funding.index'));
+        return redirect(route('funding.index'))->with('success','Funding Agency Deleted Successfully');
     }
 }

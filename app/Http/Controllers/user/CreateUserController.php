@@ -92,7 +92,7 @@ class CreateUserController extends Controller
             $pivot->faculty_id=$faculty->id;
             $pivot->department_id=$fields['department_id'];
             $pivot->save();
-            return redirect(route('usercreate.index'));
+            return redirect(route('usercreate.index'))->with('success','User Created Successfully');
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -135,8 +135,12 @@ class CreateUserController extends Controller
     public function edit($id)
     {
         try {
-            $createUser=CreateUser::find($id);
-            return view('user.edit',compact('createUser'));
+//            return DB::table('create_users')
+//            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
+//            ->join('users','users.id',"=",'create_users.user_id')
+//            ->join('departments','departments.id','=','create_users.id')
+//            ->find($id);
+            return view('user.edit');
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),
@@ -200,7 +204,7 @@ class CreateUserController extends Controller
 //            $pivot->faculty_id=$faculty->id;
 //            $pivot->department_id=$fields['department_id'];
 //            $pivot->save();
-            return redirect(route('usercreate.index'));
+            return redirect(route('usercreate.index'))->with('success','User Update Successfully');
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),
@@ -245,7 +249,7 @@ class CreateUserController extends Controller
             Faculty::find($fc)->delete();
 //            user delete
             User::find($uc)->delete();
-            return redirect(route('usercreate.index'))->with('success', 'Data Deleted Successfully');
+            return redirect(route('usercreate.index'))->with('success', 'User Deleted Successfully');
 
         }catch (Exception $e){
 

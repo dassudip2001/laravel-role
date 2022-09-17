@@ -17,6 +17,11 @@
                   @endforeach
               </ul>
           @endif
+          @if(session('success'))
+              <div class="alert alert-success">
+                  {{session('success')}}
+              </div>
+              @endif
         <form action="/department" method="POST">
           @csrf
             <div class="card-title mt-2">

@@ -67,7 +67,7 @@ class ProjectDetailsController extends Controller
             $pivot->create_user_id=$fields['create_user_id'];
             $pivot->budget_id=$fields['budget_id'];
             $pivot->save();
-            return redirect(route('projectdetail.index'));
+            return redirect(route('projectdetail.index'))->with('success','Project Created Successfully');
 
         }catch (Exception $e)
         {
