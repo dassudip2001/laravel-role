@@ -9,7 +9,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-title mt-2 mx-2">
-                        <div class="h5">Create New Project</div>
+                        <div class="h5">Edit  Project  Details</div>
                         <hr>
                     </div>
                     <div class="card-body">
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Project</button>
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Project Details</button>
                         </form>
                     </div>
                 </div>

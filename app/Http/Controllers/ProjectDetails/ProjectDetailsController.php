@@ -28,7 +28,8 @@ class ProjectDetailsController extends Controller
             ->get();
         $budget=BudgetHead::all();
         $data=FundingAgency::all();
-        return view('projectdetails.create',compact('data','data2','budget'));
+        $data3=Project::all();
+        return view('projectdetails.create',compact('data','data2','budget','data3'));
 
     }
 

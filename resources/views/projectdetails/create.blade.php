@@ -165,28 +165,29 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              
               <th scope="col"> Project No</th>
-              <th scope="col">Project Code</th>
-              <th scope="col">Project cost</th>
+              <th scope="col"> Title</th>
+              <th scope="col"> cost</th>
+              <th scope="col"> Agency</th>
+
               @role('admin')
               <th scope="col">Action</th>
               @endrole
             </tr>
            </thead>
          <tbody>
-           
+           @foreach($data3 as $item)         
            <tr>
-             <td></td>
-             <td></td>
-             <td> </td>
-             <td></td>
+             <td>{{$item->project_no}}</td>
+             <td>{{$item->project_title}}</td>
+             <td>{{$item->project_total_cost}} </td>
              <th>
               @role('admin')
-             <a href=" {{ url('/createuser/edit') }} ">
+             <a href=" {{ url('/projectdetail/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
-            <a href=" {{ url('/createuser/delete') }} ">
+            <a href=" {{ url('/projectdetail/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
              </th>
@@ -195,6 +196,7 @@
             </th>
           </tr>
           
+           @endforeach
         </tbody>
           </table>
         </div>
