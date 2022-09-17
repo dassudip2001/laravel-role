@@ -30,7 +30,7 @@ class DepartmentController extends Controller
 
         $department->description=$request->description;
         $department->save();
-        return redirect(route('index'))->with('success','Department Created Successfully');
+        return redirect(route('index'))->with('success','Department Created Successfully',array('timeout' => 3000),'error');
     }
 
     /**

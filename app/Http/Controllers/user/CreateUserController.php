@@ -23,6 +23,11 @@ class CreateUserController extends Controller
      */
     public function index()
     {
+       $data= DB::table('create_users')
+            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
+            ->join('users','users.id',"=",'create_users.user_id')
+            ->join('departments','departments.id','=','create_users.department_id')
+            ->get();
 
 //
 
@@ -31,7 +36,7 @@ class CreateUserController extends Controller
 //            ->join('users','create_users.id','=','create_users.user_id')
 //            ->join('departments','create_users.id','=','create_users.department_id')->get();
 
-        $data=Department::all();
+        // $data=Department::all();
        return view('user.create',compact('data'));
  }
 

@@ -153,28 +153,30 @@
           <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col"> User Code</th>
-              <th scope="col">User Name</th>
-              <th scope="col">User Email</th>
+              
+              <th scope="col"> Fac Code</th>
+              <th scope="col"> Name</th>
+              <th scope="col"> Email</th>
+              <th scope="col"> Phone</th>
               @role('admin')
               <th scope="col">Action</th>
               @endrole
             </tr>
            </thead>
          <tbody>
-            <!-- @foreach ($department as $item) -->
+             @foreach ($data as $item)
            <tr>
-             <td></td>
-             <td></td>
-             <td> </td>
-             <td></td>
+           
+             <td>{{$item->fac_code}}</td>
+             <td>{{$item->name}}</td>
+             <td>{{$item->email}} </td>
+             <td>{{$item->fac_phone}}</td>
              <th>
               @role('admin')
-             <a href=" {{ url('/createuser/edit') }} ">
+             <a href=" {{ url('/createuser/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
-            <a href=" {{ url('/createuser/delete') }} ">
+            <a href=" {{ url('/createuser/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
              </th>
@@ -182,7 +184,7 @@
                 </a>
             </th>
           </tr>
-          <!-- @endforeach -->
+          @endforeach
         </tbody>
           </table>
         </div>

@@ -91,6 +91,7 @@
                 $(this).closest('tr').remove();
               });
      </script>
+
   </body>
 
 </html>
