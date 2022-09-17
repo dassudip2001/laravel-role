@@ -20,7 +20,7 @@ class DepartmentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function create(Request $request)
     {
@@ -30,7 +30,8 @@ class DepartmentController extends Controller
 
         $department->description=$request->description;
         $department->save();
-        return redirect(route('index'));
+        return redirect(route('index'))->with('mass
+        age','Department Created Successfully');
     }
 
     /**

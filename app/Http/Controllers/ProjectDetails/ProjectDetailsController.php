@@ -16,7 +16,7 @@ class ProjectDetailsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
@@ -105,10 +105,23 @@ class ProjectDetailsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
+
+
+
+        try {
+            $pc=ProjectDetails::find($id);
+            return view('projectdetails.edit',compact('pc'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
 
     }
 
@@ -117,21 +130,64 @@ class ProjectDetailsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $this->validate($request,[
+                'project_no',
+                'project_title',
+                'project_scheme',
+                'project_duration',
+                'project_total_cost',
+            ]);
+//            $fields=$request->only([
+//                'project_no',
+//                'project_title',
+//                'project_scheme',
+//                'project_duration',
+//                'project_total_cost',
+//            ]);
+            $pc=ProjectDetails::find($id);
+            $fc=Project::find($pc->id);
+            if ($pc==null){
+                abort(501,"There no record found!!");
+            }
+            $fc->project_no=$request->project_no;
+            $fc->project_title=$request->project_title;
+            $fc->project_scheme=$request->project_scheme;
+            $fc->project_duration=$request->project_duration;
+            $fc->project_total_cost=$request->project_total_cost;
+            $fc->save();
+            return redirect(route('projectdetail.index'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
+        try {
+            $pc=ProjectDetails::find($id)->project_id;
+            ProjectDetails::find($id)->delete();
+            Project::find($pc)->delete();
+            return redirect(route('projectdetail.index'))->with('success', 'Data Deleted Successfully');
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
         //
     }
 }

@@ -10,6 +10,13 @@
     <div class="col">
     @role('admin')
       <div class="card">
+          @if($errors->any())
+              <ul class="alert alert-warning">
+                  @foreach($errors->all() as $error)
+                      <li>{{$error}}</li>
+                  @endforeach
+              </ul>
+          @endif
         <form action="/department" method="POST">
           @csrf
             <div class="card-title mt-2">
@@ -22,25 +29,25 @@
                  <!-- Department Name -->
             <div class="mb-6">
                <label for="department_name">Department Name<span class="required" style="color: red;">*</span></label>
-               <input type="text" class="form-control form-control-sm" name="dept_name"  id="department_name" aria-describedby="department_name" placeholder="Enter Department Name">   
+               <input type="text" class="form-control form-control-sm" name="dept_name"  id="department_name" aria-describedby="department_name" placeholder="Enter Department Name">
              </div>
                </div>
                <div class="col">
                   <!-- Department code -->
                     <div class="mb-6">
                       <label for="department_code">Department Code<span class="required" style="color: red;">*</span></label>
-                      <input type="text" class="form-control form-control-sm" name="dept_code"  id="department_code" aria-describedby="department_code" placeholder="Enter Department Code">   
+                      <input type="text" class="form-control form-control-sm" name="dept_code"  id="department_code" aria-describedby="department_code" placeholder="Enter Department Code">
                     </div>
                    </div>
                 </div>
              <!-- Department Details -->
              <div class="mb-6">
                <label for="department_details">Department Details</label>
-               <input type="text" class="form-control form-control" name="description"  id="department_details" aria-describedby="department_details" placeholder="Enter Department Description">   
+               <input type="text" class="form-control form-control" name="description"  id="department_details" aria-describedby="department_details" placeholder="Enter Department Description">
              </div>
              <!-- Button -->
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>            
-        </form>               
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+        </form>
         </div>
         @endrole
       </div>
@@ -50,7 +57,7 @@
         <div class="card-title mt-2">
             <h6>Department Details</h6>
             <hr>
-        </div>        
+        </div>
         <!-- <div class="card-body"> -->
          <!-- output -->
          <table class="table">
@@ -67,12 +74,12 @@
            </thead>
          <tbody>
             @foreach ($department as $item)
-           <tr>            
-             <td>{{$item->id}}</td>                        
+           <tr>
+             <td>{{$item->id}}</td>
              <td> {{$item->dept_name}}</td>
              <td> {{$item->dept_code}}</td>
              <td> {{$item->description}}</td>
-             <th> 
+             <th>
               @role('admin')
              <a href=" {{ url('/department/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
@@ -81,7 +88,7 @@
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
              </th>
-             <th> 
+             <th>
                 </a>
             </th>
           </tr>

@@ -134,8 +134,16 @@ class CreateUserController extends Controller
      */
     public function edit($id)
     {
-        $createUser=CreateUser::find($id);
-        return view('user.edit',compact('createUser'));
+        try {
+            $createUser=CreateUser::find($id);
+            return view('user.edit',compact('createUser'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
@@ -166,32 +174,32 @@ class CreateUserController extends Controller
                 'fac_designtion','fac_phone','fac_status','fac_description','department_id',
 
             ]);
-            $user = User::find([
-                'name'=>$fields['name'],
-                'email' => $fields['email'],
-                'password' => bcrypt($fields['password']),
-            ]);
-            $user->save();
-            $faculty = Faculty::find([
-
-//                'fac_name' => $fields['fac_name'],
-                'fac_code' => $fields['fac_code'],
-                'fac_title' => $fields['fac_title'],
-                'fac_designtion' => $fields['fac_designtion'],
-                'fac_join' => $fields['fac_join'],
-                'fac_retirement' => $fields['fac_retirement'],
-                'fac_phone' => $fields['fac_phone'],
-
-                'fac_status' => $fields['fac_status'],
-                'fac_description' => $fields['fac_description'],
-
-            ]);
-            $faculty->save();
-            $pivot=CreateUser::find($id);
-            $pivot->user_id=$user->id;
-            $pivot->faculty_id=$faculty->id;
-            $pivot->department_id=$fields['department_id'];
-            $pivot->save();
+//            $user = User::find([
+//                'name'=>$fields['name'],
+//                'email' => $fields['email'],
+//                'password' => bcrypt($fields['password']),
+//            ]);
+//            $user->save();
+//            $faculty = Faculty::find([
+//
+////                'fac_name' => $fields['fac_name'],
+//                'fac_code' => $fields['fac_code'],
+//                'fac_title' => $fields['fac_title'],
+//                'fac_designtion' => $fields['fac_designtion'],
+//                'fac_join' => $fields['fac_join'],
+//                'fac_retirement' => $fields['fac_retirement'],
+//                'fac_phone' => $fields['fac_phone'],
+//
+//                'fac_status' => $fields['fac_status'],
+//                'fac_description' => $fields['fac_description'],
+//
+//            ]);
+//            $faculty->save();
+//            $pivot=CreateUser::find($id);
+//            $pivot->user_id=$user->id;
+//            $pivot->faculty_id=$faculty->id;
+//            $pivot->department_id=$fields['department_id'];
+//            $pivot->save();
             return redirect(route('usercreate.index'));
         }catch (Exception $e){
 
@@ -205,11 +213,47 @@ class CreateUserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-//        CreateUser::destroy($id);
-        return redirect(route('usercreate.index'));
+//        $fc = CreateUser::find($id)->user_id;
+//        Account::find($id)->delete();
+//        Contact::find($fc)->delete();
+////        $data2=DB::table('create_users')
+////            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
+////            ->join('users','users.id',"=",'create_users.user_id')
+////            ->join('departments','departments.id','=','create_users.department_id')
+////            ->get();
+//        $data =DB::table('create_users')
+//            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
+//             ->join('users','users.id',"=",'create_users.user_id')
+//             ->join('departments','departments.id','=','create_users.department_id')
+//            ->where('create_users.id', $id);
+//            DB::table('faculties')->where('faculty_id', $id)->delete();
+//            DB::table('users')->where('user_id', $id)->delete();
+////            DB::table('departments')->where('department_id', $id)->delete();
+//            $data->delete();
+        try {
+//            create user and faculty
+            $fc = CreateUser::find($id)->faculty_id;
+//            create user and user
+            $uc=CreateUser::find($id)->user_id;
+//            create user delete
+            CreateUser::find($id)->delete();
+//            faculty Delete
+            Faculty::find($fc)->delete();
+//            user delete
+            User::find($uc)->delete();
+            return redirect(route('usercreate.index'))->with('success', 'Data Deleted Successfully');
+
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+//
+////        CreateUser::destroy($id);
     }
 }
