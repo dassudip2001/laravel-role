@@ -119,13 +119,11 @@
 
                 <td><input type="number" class="form-control form-control-sm" name="budget_amount[]" id="clear" placeholder="Enter Budget Amount" ></td>
                 <td>
-                    <button type="button" id="add_btn" >
-                        <i class="fa-regular fa-square-plus">
-
-                        </i>
+                    <button class="btn btn-success" type="button" id="add_btn" >
+                        Add
                     </button>
-                    <button onclick="document.getElementById('clear1').value = null; document.getElementById('clear').value = null; return false;">
-                        <i class="fa-solid fa-brush"></i>
+                    <button class="btn btn-success" onclick="document.getElementById('clear1').value = null; document.getElementById('clear').value = null; return false;">
+                        clear
                     </button>
                 </td>
             </tr>
@@ -153,55 +151,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card">
-        <!-- card Head  -->
-        <div class="card-title mx-2 mt-2">
-        <h6>Edit Project Details</h6>
-        <hr>
-        </div>
-        <!-- card Body -->
-        <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              
-              <th scope="col"> Project No</th>
-              <th scope="col"> Title</th>
-              <th scope="col"> cost</th>
-              <th scope="col"> Agency</th>
-
-              @role('admin')
-              <th scope="col">Action</th>
-              @endrole
-            </tr>
-           </thead>
-         <tbody>
-           @foreach($data3 as $item)         
-           <tr>
-             <td>{{$item->project_no}}</td>
-             <td>{{$item->project_title}}</td>
-             <td>{{$item->project_total_cost}} </td>
-             <th>
-              @role('admin')
-             <a href=" {{ url('/projectdetail/edit',$item->id) }} ">
-             <i class="fa-regular fa-pen-to-square"></i>
-            </a>
-            <a href=" {{ url('/projectdetail/delete',$item->id) }} ">
-            <button type="submit"><i class="fa-solid fa-trash"></i></button>
-             @endrole
-             </th>
-             <th>
-                </a>
-            </th>
-          </tr>
-          
-           @endforeach
-        </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+   
 
   </div>
 

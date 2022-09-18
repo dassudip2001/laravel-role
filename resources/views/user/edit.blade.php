@@ -4,10 +4,11 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="card">
+    <div class="container mt-4">
+      <div class="card">
         <!-- card Title -->
         <div class="card-title m-2">
-            <h6>Create User </h6>
+            <h6>Edit User </h6>
             <hr>
         </div>
         <div class="card-body">
@@ -19,7 +20,7 @@
               <!-- Faculty Title  -->
               <div class="mb-6">
                 <label for="faculty_title">Faculty Title<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_title"  value=""  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title">
+                <input type="text" class="form-control form-control-sm" name="fac_title"  value=" "  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title">
               </div>
             </div>
             <div class="col">
@@ -45,20 +46,7 @@
                 <input type="email" class="form-control form-control-sm" name="email" value=""  id="faculty_email" aria-describedby="faculty_email" placeholder="Enter  Faculty Email">
               </div>
             </div>
-            <div class="col">
-                 <!-- Faculty Department -->
-                 <div class="mb-6">
-        <label for="funding_agency">Faculty Department <span class="required" style="color: red;">*</span></label>
-        <br>
-        <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
-          <option selected hidden>Select Faculty Department </option>
-         
-            <option value=""
-                </option>
-          
-        </select>
-      </div>
-            </div>
+            
          </div>
          <div class="row">
             <div class="col">
@@ -73,6 +61,7 @@
                <div class="mb-6">
                 <label for="faculty_join">Faculty Join<span class="required" style="color: red;">*</span></label>
                 <input type="date" class="form-control form-control-sm" name="fac_join" value=""  id="faculty_join" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
+                <!-- <input class="date form-control" style="width: 250px;" type="text">  -->
               </div>
             </div>
          </div>
@@ -125,10 +114,14 @@
             </div>
          </div>
          <!-- Button -->
-         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create User</button>
+         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update User</button>
         </form>
         </div>
     </div>
 </div>
+    </div>
+
 
 </x-admin-layout>
+
+

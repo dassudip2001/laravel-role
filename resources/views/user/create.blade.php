@@ -6,6 +6,7 @@
     </x-slot>
 <div class="container  mt-4">
   <div class="row">
+    @role('admin')
     <div class="col">
       <div class="card">
         <!-- success massage -->
@@ -20,7 +21,7 @@
             <hr>
         </div>
         <div class="card-body">
-            
+
         <form action=" " method="POST">
          @csrf
          <div class="row">
@@ -136,12 +137,10 @@
          </div>
          <!-- Button -->
          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create User</button>
-
         </form>
-
-
         </div>
     </div>
+    @endrole
     </div>
     <div class="col">
       <div class="card">
@@ -153,24 +152,36 @@
           <table class="table">
           <thead>
             <tr>
-              
               <th scope="col"> Fac Code</th>
               <th scope="col"> Name</th>
               <th scope="col"> Email</th>
               <th scope="col"> Phone</th>
+             
+              <!-- <th scope="col"> Join</th> -->
+              <!-- <th scope="col"> Retirement</th> -->
+              <!-- <th scope="col"> Department</th> -->
+              <!-- <th scope="col"> Description</th> -->
+              <th scope="col"> Status</th>
+             
               @role('admin')
               <th scope="col">Action</th>
               @endrole
             </tr>
            </thead>
          <tbody>
-             @foreach ($data as $item)
+         @foreach($createUser as $item)
            <tr>
-           
-             <td>{{$item->fac_code}}</td>
-             <td>{{$item->name}}</td>
-             <td>{{$item->email}} </td>
-             <td>{{$item->fac_phone}}</td>
+             <td>{{$item->faculty->fac_code}}</td>
+             <td>{{$item->user->name}}</td>
+             <td>{{$item->user->email}} </td>
+             <td>{{$item->faculty->fac_phone}}</td>
+          
+             <!-- <td>{{$item->faculty->fac_join}}</td> -->
+             <!-- <td>{{$item->faculty->fac_retirement}}</td>  -->
+             <!-- <td>{{$item->department->dept_name}}</td> -->
+             <!-- <td>{{$item->faculty->fac_description}}</td>  -->
+             <td>{{$item->faculty->fac_status}}</td> 
+            
              <th>
               @role('admin')
              <a href=" {{ url('/createuser/edit',$item->id) }} ">
@@ -184,13 +195,13 @@
                 </a>
             </th>
           </tr>
-          @endforeach
+         @endforeach
         </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-    
+
 </div>
 </x-admin-layout>
