@@ -26,14 +26,14 @@
                  <!-- Budget Name -->
             <div class="mb-6">
                <label for="budget_title">Budget Title<span class="required" style="color: red;">*</span></label>
-               <input type="text" class="form-control form-control-sm" name="budget_title"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Department Name">
+               <input type="text" class="form-control form-control-sm" name="budget_title"  id="budget_name" aria-describedby="budget_name" placeholder="Enter Budget Title">
              </div>
                </div>
                <div class="col">
                   <!-- Budget code -->
                     <div class="mb-6">
                       <label for="budget_type">Budget Type<span class="required" style="color: red;">*</span></label>
-                      <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Department Code">
+                      <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Budget Type">
                     </div>
                    </div>
                 </div>

@@ -145,27 +145,6 @@ class CreateUserController extends Controller
             }
                 ]
             )->get();
-//             return CreateUser::where('user_id',$id)->first();
-//            User::where('id',$fc['user_id'])->get();
-//            Faculty::where('id',$fc['faculty_id'])->get();
-//            CreateUser::where('id',$fc['id'])->get();
-//            $user_pivot= CreateUser::find($id);
-//            Faculty::where('id',$user_pivot['faculty_id'])->get();
-//            $fc=CreateUser::find($id)->faculty_id;
-//            $uc=CreateUser::find($id)->user_id;
-//            create user delete
-//            return CreateUser::find($id);
-//           echo "$user_pivot";
-//          faculty Delete
-//          return Faculty::find($fc)->get();
-//            user delete
-//            User::find($uc)->get();
-
-//            return DB::table('create_users')->find($id);
-//            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
-//            ->join('users','users.id',"=",'create_users.user_id')
-//            ->join('departments','departments.id','=','create_users.id')
-//            ->get($id);
             return view('user.edit',compact('createUser'));
         }catch (Exception $e){
 
@@ -183,110 +162,44 @@ class CreateUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id):array
     {
 
-        dd($request->all());
 
-        $user_pivot=CreateUser::find($id);
-        if ($user_pivot==null){
-            return response()->json("user not found ",404);
-        }
-        // $this->validate($request,[
-        //     'name' => 'required|string|max:255',
-        //     'password' => 'required|string|confirmed|min:8',
-        //     'fac_phone'=>'required' ,
-        //     'fac_description'=>'required' ,
-        //     ]);
-        //     $fields=$request->only(['name','password',
-        //         'fac_phone','fac_description',
-        //     ]);
+//        $user_pivot=CreateUser::find($id);
+//        if ($user_pivot==null){
+//            return response()->json("user not found ",404);
+//        }
+
         try {
-            $this->validate($request, [
 
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|confirmed|min:8',
-                'fac_code' => 'required|unique:faculties|max:50',
-                'fac_title' => 'required',
-                'fac_join' => 'required',
+            $createUser=CreateUser::find($id);
+            $faculty=Faculty::find($createUser->faculty_id);
+            if ($createUser==null){
+                abort(501, "Opps! There no record associate with this id $id");
+            }
 
-                'fac_retirement'=>'required',
-                'fac_designtion' => 'required',
-                'fac_phone' => 'required',
-                'fac_status' => 'required',
-                'fac_description' => 'required',
-
-            ]);
-            $fields=$request->only(['name','email','password'
-              ,'fac_code','fac_title','fac_join','fac_retirement',
-               'fac_designtion','fac_phone','fac_status','fac_description','department_id',
-
-            ]);
+             $this->validate($request,[
+                 'name' => 'required|string|max:255',
+                 'password' => 'required|string|confirmed|min:8',
+                 'fac_phone'=>'required' ,
+                 'fac_description'=>'required' ,
+                 ]);
+                 $fields=$request->only(['name','password',
+                     'fac_phone','fac_description',
+                 ]);
             $user = new User([
                 'name'=>$fields['name'],
-                'email' => $fields['email'],
+
                 'password' => bcrypt($fields['password']),
             ]);
             $user->save();
 
             $faculty = new Faculty([
-
-//                'fac_name' => $fields['fac_name'],
-                'fac_code' => $fields['fac_code'],
-                'fac_title' => $fields['fac_title'],
-                'fac_designtion' => $fields['fac_designtion'],
-                'fac_join' => $fields['fac_join'],
-                'fac_retirement' => $fields['fac_retirement'],
                 'fac_phone' => $fields['fac_phone'],
-
-                'fac_status' => $fields['fac_status'],
                 'fac_description' => $fields['fac_description'],
-
             ]);
             $faculty->save();
-            $pivot=new CreateUser();
-            $pivot->user_id=$user->id;
-            $pivot->faculty_id=$faculty->id;
-            $pivot->department_id=$fields['department_id'];
-            $pivot->save();
-
-            
-
-
-////            update users
-//           $user->name=$fields['name'];
-//           $user->password=
-//           $user->save();
-//            'email' => $fields['email'],
-//            'password' => bcrypt($fields['password']),
-
-//            $user = User::find([
-//                'name'=>$fields['name'],
-//                'email' => $fields['email'],
-//                'password' => bcrypt($fields['password']),
-//            ]);
-//            $user->save();
-//            $faculty = Faculty::find([
-//
-////                'fac_name' => $fields['fac_name'],
-//                'fac_code' => $fields['fac_code'],
-//                'fac_title' => $fields['fac_title'],
-//                'fac_designtion' => $fields['fac_designtion'],
-//                'fac_join' => $fields['fac_join'],
-//                'fac_retirement' => $fields['fac_retirement'],
-//                'fac_phone' => $fields['fac_phone'],
-//
-//                'fac_status' => $fields['fac_status'],
-//                'fac_description' => $fields['fac_description'],
-//
-//            ]);
-//            $faculty->save();
-//            $pivot=CreateUser::find($id);
-//            $pivot->user_id=$user->id;
-//            $pivot->faculty_id=$faculty->id;
-//            $pivot->department_id=$fields['department_id'];
-//            $pivot->save();
             return redirect(route('usercreate.index'))->with('success','User Update Successfully');
         }catch (Exception $e){
 
@@ -304,30 +217,8 @@ class CreateUserController extends Controller
      */
     public function destroy($id)
     {
-//        $fc = CreateUser::find($id)->user_id;
-//        Account::find($id)->delete();
-//        Contact::find($fc)->delete();
-////        $data2=DB::table('create_users')
-////            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
-////            ->join('users','users.id',"=",'create_users.user_id')
-////            ->join('departments','departments.id','=','create_users.department_id')
-////            ->get();
-//        $data =DB::table('create_users')
-//            ->join('faculties','faculties.id',"=",'create_users.faculty_id')
-//             ->join('users','users.id',"=",'create_users.user_id')
-//             ->join('departments','departments.id','=','create_users.department_id')
-//            ->where('create_users.id', $id);
-//            DB::table('faculties')->where('faculty_id', $id)->delete();
-//            DB::table('users')->where('user_id', $id)->delete();
-////            DB::table('departments')->where('department_id', $id)->delete();
-//            $data->delete();
         try {
-//            create user and faculty
-//            $createUser = CreateUser::where('user_id',$id)->first();
-//            User::where('id',$createUser['user_id'])->delete();
-//            Faculty::where('id',$createUser['faculty_id'])->delete();
-//            CreateUser::where('id',$createUser['id'])->delete();
-////            create user and user
+//
              $fc=CreateUser::find($id)->faculty_id;
             $uc=CreateUser::find($id)->user_id;
 //            create user delete

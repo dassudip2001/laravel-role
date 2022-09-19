@@ -40,9 +40,9 @@
 
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" style=" text-decoration: none;" href="{{ url('/department') }}">Department</a>
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" style=" text-decoration: none;" href="{{ url('/faculty') }}">Faculty</a>
-                 
+
                  <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" style=" text-decoration: none;" href="{{ url('/createuser') }}"> Create User</a>
-                 
+
 {{--                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" style=" text-decoration: none;" href="#"> Show User</a>--}}
 
                  <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" style=" text-decoration: none;" href="{{ url('/funding') }}"> Funding Agency</a>
@@ -74,23 +74,8 @@
             </main>
         </div>
     </div>
-    <!-- budget Details -->
-      <script type="text/javascript">
-            $(document).ready(function(){
-                $('#add_btn').on('click',function(){
-                  var html='';
-                  html+='<tr>';
-                  html+='<td><input type="text" class="form-control form-control-sm" name="budget_title[]" placeholder="Enter Budget Title" ></td>';
-                  html+='<td><input type="number" class="form-control form-control-sm" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>';
-                  html+='<td><button type="button"  id="remove" ><i class="fa-solid fa-trash"></i></button></td>';
-                  html+='</tr>';
-                              $('tbody').append(html);
-                })
-              });
-              $(document).on('click','#remove',function(){
-                $(this).closest('tr').remove();
-              });
-     </script>
+    @yield('script')
+
   </body>
 
 </html>

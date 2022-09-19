@@ -40,6 +40,8 @@ class ProjectDetailsController extends Controller
      */
     public function create(Request $request)
     {
+        abort_unless(auth()->user()->can('create_project'),403,'you dont have required authorization to this resource');
+
         try {
             $this->validate($request,[
                  'project_no'=>'required',
