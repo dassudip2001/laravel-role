@@ -69,8 +69,8 @@ class ProjectDetailsController extends Controller
             ]);
             $project->save();
 
-          
-            
+
+
             $pivot=new ProjectDetails();
             // project Save
             $pivot->project_id=$project->id;
@@ -79,12 +79,14 @@ class ProjectDetailsController extends Controller
             // Create User Id References
             $pivot->create_user_id=$fields['create_user_id'];
             // Budget  id field
-            $pivot->budget_id=$fields['budget_id'];
-            $pivot['budget_id']=implode(',',$pivot->budget_id);
+            // $pivot->budget_id=implode(',',['budget_id']);
+
+            $pivot->budget_id=implode($fields['budget_id']);
+//             $pivot['budget_id']=implode(',',$pivot->budget_id);
             // budget Amount Details
             $pivot->budget_details_amount=$fields['budget_details_amount'];
             $pivot['budget_details_amount']=implode(',',$pivot->budget_details_amount);
-            
+
             $pivot->save();
             return redirect(route('projectdetail.index'))->with('success','Project Created Successfully');
 
