@@ -17,8 +17,7 @@ class FundingAgencyController extends Controller
      */
     public function index()
     {
-        // abort_unless(auth()->user()->can('read_fundingAgency'),403,'you dont have required authorization to this resource');
-       
+
         $agency=FundingAgency::all();
         return view('funding.create',compact('agency'));
     }
@@ -30,8 +29,6 @@ class FundingAgencyController extends Controller
      */
     public function create(Request $request)
     {
-        abort_unless(auth()->user()->can('create_fundingAgency'),403,'you dont have required authorization to this resource');
-
         try {
             $agency=new FundingAgency;
             $agency->agency_name=$request->agency_name;
@@ -75,10 +72,7 @@ class FundingAgencyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    
     {
-        abort_unless(auth()->user()->can('edit_fundingAgency'),403,'you dont have required authorization to this resource');
-
         $agency=FundingAgency::find($id);
         return view('funding.edit',compact('agency'));
     }
@@ -94,8 +88,6 @@ class FundingAgencyController extends Controller
 
     {
         try {
-            abort_unless(auth()->user()->can('edit_fundingAgency'),403,'you dont have required authorization to this resource');
-
             $agency=FundingAgency::find($id);
         $agency->agency_name=$request->agency_name;
         $agency->save();
@@ -119,8 +111,6 @@ class FundingAgencyController extends Controller
      */
     public function destroy($id)
     {
-        abort_unless(auth()->user()->can('delete_fundingAgency'),403,'you dont have required authorization to this resource');
-           
         FundingAgency::destroy($id);
         return redirect(route('funding.index'))->with('success','Funding Agency Deleted Successfully');
     }

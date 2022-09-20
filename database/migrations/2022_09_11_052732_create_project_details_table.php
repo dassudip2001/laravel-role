@@ -19,6 +19,10 @@ class CreateProjectDetailsTable extends Migration
             $table->unsignedBigInteger('funding_agency_id');
             $table->unsignedBigInteger('budget_id');
             $table->unsignedBigInteger('create_user_id');
+            $table->string('budget_details_amount');
+
+            // $table->unsignedBigInteger('budgetdetails_id');
+
             $table->timestamps();
         });
     }

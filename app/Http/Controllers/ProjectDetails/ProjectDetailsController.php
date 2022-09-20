@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\ProjectDetails;
 use App\Models\FundingAgency;
 use App\Models\CreateUser;
+use App\Models\BudgetDetails;
 use Illuminate\Support\Facades\DB;
 use Exception;
 class ProjectDetailsController extends Controller
@@ -29,7 +30,8 @@ class ProjectDetailsController extends Controller
         $budget=BudgetHead::all();
         $data=FundingAgency::all();
         $data3=Project::all();
-        return view('projectdetails.create',compact('data','data2','budget','data3'));
+        $data4=BudgetDetails::all();
+        return view('projectdetails.create',compact('data','data2','budget','data3','data4'));
 
     }
 
@@ -40,7 +42,7 @@ class ProjectDetailsController extends Controller
      */
     public function create(Request $request)
     {
-        abort_unless(auth()->user()->can('create_project'),403,'you dont have required authorization to this resource');
+        // abort_unless(auth()->user()->can('create_project'),403,'you dont have required authorization to this resource');
 
         try {
             $this->validate($request,[
@@ -49,11 +51,13 @@ class ProjectDetailsController extends Controller
                  'project_scheme'=>'required',
                  'project_duration'=>'required',
                  'project_total_cost'=>'required',
+                 'budget_details_amount'=>'required',
+
 
             ]);
             $fields=$request->only(['project_no','project_title','project_scheme',
                 'project_duration','project_total_cost',
-               'funding_agency_id','create_user_id','budget_id',
+               'funding_agency_id','create_user_id','budget_id','budget_details_amount',
 
             ]);
             $project=new Project([
@@ -64,11 +68,23 @@ class ProjectDetailsController extends Controller
                 'project_total_cost'=>$fields['project_total_cost'],
             ]);
             $project->save();
+
+          
+            
             $pivot=new ProjectDetails();
+            // project Save
             $pivot->project_id=$project->id;
+            // Funding Agency Id References
             $pivot->funding_agency_id=$fields['funding_agency_id'];
+            // Create User Id References
             $pivot->create_user_id=$fields['create_user_id'];
+            // Budget  id field
             $pivot->budget_id=$fields['budget_id'];
+            $pivot['budget_id']=implode(',',$pivot->budget_id);
+            // budget Amount Details
+            $pivot->budget_details_amount=$fields['budget_details_amount'];
+            $pivot['budget_details_amount']=implode(',',$pivot->budget_details_amount);
+            
             $pivot->save();
             return redirect(route('projectdetail.index'))->with('success','Project Created Successfully');
 

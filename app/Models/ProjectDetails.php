@@ -16,6 +16,7 @@ class ProjectDetails extends Model
         'funding_agency_id',
         'create_user_id',
         'budget_id',
+        'budgetdetails_id',
     ];
     public function project(){
         return $this->belongsTo(Project::class,'project_id','id');
@@ -29,5 +30,8 @@ class ProjectDetails extends Model
     }
     public function budgethead(){
         return $this->belongsTo(BudgetHead::class,'budget_id','id');
+    }
+    public function budgetdetails(){
+        return $this->belongsTo(BudgetDetails::class,'budgetdetails_id','id');
     }
 }

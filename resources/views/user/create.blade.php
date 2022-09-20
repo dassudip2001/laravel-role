@@ -27,9 +27,19 @@
          <div class="row">
             <div class="col">
               <!-- Faculty Title  -->
-              <div class="mb-6">
+              <div class="mb-6 ">
                 <label for="faculty_title">Faculty Title<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_title"  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title">
+                <!-- <input type="text" class="form-control form-control-sm" name="fac_title"  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title"> -->
+                <select name="fac_title" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option selected hidden>Faculty Title </option>
+                  <option >Prf.</option>
+
+                 
+                   <option >Dr.</option>
+                   <option >Mr.</option>
+                   <option >Mis.</option>
+            
+               </select>
               </div>
             </div>
             <div class="col">
@@ -53,6 +63,7 @@
                 <div class="mb-6">
                 <label for="faculty_email">Faculty Email<span class="required" style="color: red;">*</span></label>
                 <input type="email" class="form-control form-control-sm" name="email"  id="faculty_email" aria-describedby="faculty_email" placeholder="Enter  Faculty Email">
+                
               </div>
             </div>
             <div class="col">
@@ -73,16 +84,25 @@
          <div class="row">
             <div class="col">
                 <!--Faculty Designation  -->
-                <div class="mb-6">
+                <div class="mb-6 ">
                 <label for="faculty_designation">Faculty Designation<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_designtion"  id="faculty_designation" aria-describedby="faculty_designation" placeholder="Enter  Faculty Designation">
+                <!-- <input type="text" class="form-control form-control-sm" name="fac_designtion"  id="faculty_designation" aria-describedby="faculty_designation" placeholder="Enter  Faculty Designation"> -->
+                <select name="fac_designtion" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option selected hidden>Faculty Designation  </option>
+                  <option >Professor </option>
+
+                  
+                   <option >Associate Professor </option>
+                   <option >Assistance Professor</option>
+             
+               </select>
               </div>
             </div>
             <div class="col">
                <!-- Faculty Join Date -->
                <div class="mb-6">
                 <label for="faculty_join">Faculty Join<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_join"  id="faculty_join" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
+                <input type="text" class="form-control form-control-sm" name="fac_join"  id="from-datepicker" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
               </div>
             </div>
          </div>
@@ -91,7 +111,7 @@
                 <!-- Faculty Retirement Date -->
                 <div class="mb-6">
                 <label for="faculty_retirement">Faculty Retirement<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_retirement"  id="faculty_retirement" aria-describedby="faculty_retirement" placeholder="Enter  Faculty Retirement">
+                <input type="text" class="form-control form-control-sm" name="fac_retirement"  id="from-datepicker" aria-describedby="faculty_retirement" placeholder="Enter  Faculty Retirement">
               </div>
             </div>
             <div class="col">
@@ -107,7 +127,15 @@
                 <!-- Faculty Status -->
                 <div class="mb-6">
                 <label for="faculty_status">Faculty Status<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_status"  id="faculty_status" aria-describedby="faculty_status" placeholder="Enter  Faculty Status">
+                <!-- <input type="text" class="form-control form-control-sm" name="fac_status"  id="faculty_status" aria-describedby="faculty_status" placeholder="Enter  Faculty Status"> -->
+                <select name="fac_status" class="form-select form-select-sm" aria-label=".form-select-sm example">
+               <option selected hidden>Faculty Status </option>
+               <option >Active </option>
+
+               
+              <option >Dactive </option>
+              
+               </select>
               </div>
             </div>
             <div class="col">
@@ -204,4 +232,15 @@
   </div>
 
 </div>
+<!-- @section('script')
+$( document ).ready(function() {
+        $("#from-datepicker").datepicker({ 
+            format: 'yyyy-mm-dd'
+        });
+        $("#from-datepicker").on("change", function () {
+            var fromdate = $(this).val();
+            // alert(fromdate);
+        });
+    });
+@endsection -->
 </x-admin-layout>

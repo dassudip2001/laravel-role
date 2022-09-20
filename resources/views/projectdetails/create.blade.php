@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <!-- form Start -->
-                        <form action="" method="POST" >
+                        <form action="" method="POST" name="budgetForm">
                             @csrf
                             <div class="row g-2">
                                 <div class="col-md">
@@ -98,7 +98,6 @@
                                 <h6>Budget Details </h6>
                                 <hr>
                             </div>
-                            <form name="budgetForm">
                                 <table name="budget" class="table table-bordered overflow-auto">
                                     <thead>
                                     <tr>
@@ -118,7 +117,7 @@
                                             @endforeach
                                         </td>
 
-                                        <td><input type="number" class="form-control form-control-sm" onblur="findTotal()" id="inst_amount" name="budget_amount[]" id="clear" placeholder="Enter Budget Amount" ></td>
+                                        <td><input type="number" class="form-control form-control-sm" onblur="findTotal()" id="inst_amount" name="budget_details_amount[]" id="clear" placeholder="Enter Budget Amount" ></td>
                                         <td>
                                             <button class="btn btn-success" name="addBudget" type="button" id="add_btn" >
                                                 Add
@@ -128,7 +127,7 @@
                                     </tbody>
 
                                 </table>
-                            </form>
+                          
                             <div class="row">
                                 <div class="col">
                                     <!-- add options -->
@@ -139,19 +138,21 @@
                                 <div class="col">
                                     <div class="mb-6">
                                         <label for="total_amount">Total Amount</label>
-                                        <input type="number" class="form-control form-control" name="totalAmount"  id="grandTotal" aria-describedby="total_amount" placeholder="0">
+                                        <input type="number" class="form-control form-control" name="totalAmount"  id="grandTotal" aria-describedby="total_amount" placeholder="0" readonly>
                                     </div>
 
                                 </div>
                             </div>
                             <hr>
-{{--                            <button type="submit"   class="bg-gray-500 hover:bg-gray-700-700 text-white font-bold py-2 px-4 rounded">Create Project</button>--}}
-                            <button id="button"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create User</button>
 
+                            <button id="submit" type="submit" disabled  class="btn btn-primary">Create Project</button>
 
-                        </form>
+</form>
+                       
                     </div>
+                
                 </div>
+
             </div>
 
 
@@ -164,7 +165,7 @@
                         var html='';
                         html+='<tr>';
                         html+='<td><select name="budget_id[]" class="form-select form-select-sm"  id="clear1" aria-label=".form-select-sm example"><option selected hidden>Budget Title </option>@foreach($budget as $bgt)<option value="{{$bgt->id}}">{{$bgt->budget_title}}</option>@endforeach</td>';
-                        html+='<td><input type="number" class="form-control form-control-sm" onblur="findTotal()" name="budget_amount[]" placeholder="Enter Budget Amount" ></td>';
+                        html+='<td><input type="number" class="form-control form-control-sm" onblur="findTotal()" name="budget_details_amount[]" placeholder="Enter Budget Amount" ></td>';
                         html+='<td><button type="button" onblur="findTotal()" id="remove" ><i class="fa-solid fa-trash"></i></button></td>';
                         html+='</tr>';
                         $('tbody').append(html);
@@ -176,12 +177,13 @@
 
                 //calculation
                 function findTotal() {
-                    var arr = document.getElementsByName('budget_amount[]');
+                  
+                    var arr = document.getElementsByName('budget_details_amount[]');
                     var tot = 0;
                     //button
                     var Amount = document.getElementById('amount').value;
-                    // var button = document.querySelector("#button");
-                     button.disabled = true; //setting button state to disabled
+                    var button = document.querySelector("#submit");
+                      //setting button state to disabled
                     //button complete
                     for (var i = 0; i < arr.length; i++) {
                         if (parseInt(arr[i].value))
@@ -192,12 +194,15 @@
                     console.log(tot);
                     if (tot==Amount){
                          alert('Equal To The Grand Total ');
-
+                        add_btn.disabled=true;
                         button.disabled = false;
-                    }else{
+                      $('#budgetForm').submit();
+                    }
+                    else{
                         button.disabled = true;
                         alert('Somethings Went Wrong ');
                     }
+
                 }
 
             </script>

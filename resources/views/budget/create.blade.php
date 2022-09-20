@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class="container text-center mt-4">
+    <div class="container  mt-4">
   <div class="row">
     <div class="col">
     @role('admin')
@@ -16,7 +16,7 @@
           @endif
         <form action=" " method="POST">
           @csrf
-            <div class="card-title mt-2">
+            <div class="card-title mx-2 mt-2">
                 <h6>Budget Form<span class="required" style="color: red;">*</span></h6>
             </div>
             <hr>
@@ -33,17 +33,17 @@
                   <!-- Budget code -->
                     <div class="mb-6">
                       <label for="budget_type">Budget Type<span class="required" style="color: red;">*</span></label>
-                      <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Budget Type">
+                      <!-- <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Budget Type"> -->
+                      <select name="budget_type" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                       <option selected hidden>Budget Type</option>
+                       <option >Recurring</option>                
+                     <option >Non-Recurring</option>           
+               </select>   
                     </div>
                    </div>
                 </div>
-
-
-
              <!-- Button -->
-
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-
         </form>
         </div>
        @endrole
@@ -51,12 +51,11 @@
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-title mt-2">
+        <div class="card-title mx-2 mt-2">
             <h6>Budget Details</h6>
             <hr>
         </div>
-
-        <!-- <div class="card-body"> -->
+       <!-- <div class="card-body"> -->
          <!-- output -->
          <table class="table">
            <thead>
