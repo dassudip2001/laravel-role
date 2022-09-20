@@ -13,8 +13,16 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $department=Department::all();
-        return view('department.create',compact('department'));
+        try {
+            $department=Department::all();
+            return view('department.create',compact('department'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
@@ -24,13 +32,22 @@ class DepartmentController extends Controller
      */
     public function create(Request $request)
     {
-        $department=new Department;
-        $department->dept_name=$request->dept_name;
-        $department->dept_code =$request->dept_code;
+        abort_unless(auth()->user()->can('create_department'),403,'you dont have required authorization to this resource');
+        try {
+            $department=new Department;
+            $department->dept_name=$request->dept_name;
+            $department->dept_code =$request->dept_code;
 
-        $department->description=$request->description;
-        $department->save();
-        return redirect(route('index'))->with('success','Department Created Successfully',array('timeout' => 3000),'error');
+            $department->description=$request->description;
+            $department->save();
+            return redirect(route('index'))->with('success','Department Created Successfully',array('timeout' => 3000),'error');
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
@@ -63,8 +80,16 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        $department=Department::find($id);
-        return view('department.editform',compact('department'));
+        try {
+            $department=Department::find($id);
+            return view('department.editform',compact('department'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
@@ -76,13 +101,21 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
    {
-       $department=Department::find($id);
-       $department->dept_name=$request->dept_name;
-       $department->dept_code =$request->dept_code;
+       try {
+           $department=Department::find($id);
+           $department->dept_name=$request->dept_name;
+           $department->dept_code =$request->dept_code;
 
-       $department->description=$request->description;
-       $department->save();
-       return redirect(route('index'))->with('success','Department Update Successfully');
+           $department->description=$request->description;
+           $department->save();
+           return redirect(route('index'))->with('success','Department Update Successfully');
+       }catch (Exception $e){
+
+           return ["message" => $e->getMessage(),
+               "status" => $e->getCode()
+           ];
+       }
+
         // $reqData = $request->only(['name', 'description', 'code']);
 
         // $department =  Department::find($id);
@@ -112,7 +145,15 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        Department::destroy($id);
-        return redirect(route('index'))->with('success','Department Delete Successfully');
+        try {
+            Department::destroy($id);
+            return redirect(route('index'))->with('success','Department Delete Successfully');
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 }

@@ -23,10 +23,12 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function create(Request $request)
     {
+        abort_unless(auth()->user()->can('create_project'),403,'you dont have required authorization to this resource');
+
         try {
             $project=new Project;
             $project->project_no=$request->project_no;
