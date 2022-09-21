@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Create User') }}
         </h2>
     </x-slot>
     <div class="card">
@@ -52,10 +52,10 @@
         <br>
         <select name="department_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
           <option selected hidden>Select Faculty Department </option>
-         
+
             <option value=""
                 </option>
-          
+
         </select>
       </div>
             </div>

@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Create User') }}
         </h2>
     </x-slot>
 <div class="container  mt-4">
@@ -34,11 +34,11 @@
                   <option selected hidden>Faculty Title </option>
                   <option >Prf.</option>
 
-                 
+
                    <option >Dr.</option>
                    <option >Mr.</option>
                    <option >Mis.</option>
-            
+
                </select>
               </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="mb-6">
                 <label for="faculty_email">Faculty Email<span class="required" style="color: red;">*</span></label>
                 <input type="email" class="form-control form-control-sm" name="email"  id="faculty_email" aria-describedby="faculty_email" placeholder="Enter  Faculty Email">
-                
+
               </div>
             </div>
             <div class="col">
@@ -91,10 +91,10 @@
                   <option selected hidden>Faculty Designation  </option>
                   <option >Professor </option>
 
-                  
+
                    <option >Associate Professor </option>
                    <option >Assistance Professor</option>
-             
+
                </select>
               </div>
             </div>
@@ -132,9 +132,9 @@
                <option selected hidden>Faculty Status </option>
                <option >Active </option>
 
-               
+
               <option >Dactive </option>
-              
+
                </select>
               </div>
             </div>
@@ -184,13 +184,13 @@
               <th scope="col"> Name</th>
               <th scope="col"> Email</th>
               <th scope="col"> Phone</th>
-             
+
               <!-- <th scope="col"> Join</th> -->
               <!-- <th scope="col"> Retirement</th> -->
               <!-- <th scope="col"> Department</th> -->
               <!-- <th scope="col"> Description</th> -->
               <th scope="col"> Status</th>
-             
+
               @role('admin')
               <th scope="col">Action</th>
               @endrole
@@ -203,13 +203,13 @@
              <td>{{$item->user->name}}</td>
              <td>{{$item->user->email}} </td>
              <td>{{$item->faculty->fac_phone}}</td>
-          
+
              <!-- <td>{{$item->faculty->fac_join}}</td> -->
              <!-- <td>{{$item->faculty->fac_retirement}}</td>  -->
              <!-- <td>{{$item->department->dept_name}}</td> -->
              <!-- <td>{{$item->faculty->fac_description}}</td>  -->
-             <td>{{$item->faculty->fac_status}}</td> 
-            
+             <td>{{$item->faculty->fac_status}}</td>
+
              <th>
               @role('admin')
              <a href=" {{ url('/createuser/edit',$item->id) }} ">
@@ -234,7 +234,7 @@
 </div>
 <!-- @section('script')
 $( document ).ready(function() {
-        $("#from-datepicker").datepicker({ 
+        $("#from-datepicker").datepicker({
             format: 'yyyy-mm-dd'
         });
         $("#from-datepicker").on("change", function () {

@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Budget') }}
         </h2>
     </x-slot>
     <div class="container  mt-4">
@@ -36,9 +36,9 @@
                       <!-- <input type="text" class="form-control form-control-sm" name="budget_type"  id="budget_type" aria-describedby="budget_type" placeholder="Enter Budget Type"> -->
                       <select name="budget_type" class="form-select form-select-sm" aria-label=".form-select-sm example">
                        <option selected hidden>Budget Type</option>
-                       <option >Recurring</option>                
-                     <option >Non-Recurring</option>           
-               </select>   
+                       <option >Recurring</option>
+                     <option >Non-Recurring</option>
+               </select>
                     </div>
                    </div>
                 </div>

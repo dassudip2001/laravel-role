@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Funding Agency') }}
         </h2>
     </x-slot>
     <div class="container text-center mt-4">
@@ -24,13 +24,13 @@
              <!-- funding Name -->
              <div class="mb-6">
                <label for="funding_agency">Funding Agency Name<span class="required" style="color: red;">*</span></label>
-               <input type="text" class="form-control form-control" name="agency_name"  id="funding_agency" aria-describedby="funding_agency" placeholder="Enter Funding Agency Name">   
+               <input type="text" class="form-control form-control" name="agency_name"  id="funding_agency" aria-describedby="funding_agency" placeholder="Enter Funding Agency Name">
              </div>
              <!-- Button -->
-             
+
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
 
-        </form>                
+        </form>
         </div>
         @endrole
       </div>
@@ -41,7 +41,7 @@
             <h6>Funding Agency Details</h6>
             <hr>
         </div>
-        
+
         <!-- <div class="card-body"> -->
          <!-- output -->
          <table class="table">
@@ -56,11 +56,11 @@
            </thead>
          <tbody>
            @foreach ($agency as $item)
-           <tr>            
-             <td>{{$item->id}}</td>                       
+           <tr>
+             <td>{{$item->id}}</td>
              <td> {{$item->agency_name}}</td>
-             <th> 
-             @role('admin')            
+             <th>
+             @role('admin')
              <a href=" {{ url('/funding/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
@@ -68,7 +68,7 @@
              <i class="fa-solid fa-trash" style=""></i>
              @endrole
              </th>
-             <th> 
+             <th>
                 </a>
             </th>
           </tr>

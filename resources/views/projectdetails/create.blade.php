@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Create Project') }}
         </h2>
     </x-slot>
     <div class="container  mt-4 ">
@@ -127,7 +127,7 @@
                                     </tbody>
 
                                 </table>
-                          
+
                             <div class="row">
                                 <div class="col">
                                     <!-- add options -->
@@ -148,9 +148,9 @@
                             <button id="submit" type="submit" disabled  class="btn btn-primary">Create Project</button>
 
 </form>
-                       
+
                     </div>
-                
+
                 </div>
 
             </div>
@@ -177,7 +177,7 @@
 
                 //calculation
                 function findTotal() {
-                  
+
                     var arr = document.getElementsByName('budget_details_amount[]');
                     var tot = 0;
                     //button

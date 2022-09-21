@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Faculty') }}
         </h2>
     </x-slot>
 <!doctype html>
@@ -17,7 +17,7 @@
     <title>VU | Faculty</title>
   </head>
   <body>
-   
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -32,5 +32,5 @@
   </body>
 </html>
 
-    
+
 </x-admin-layout>
