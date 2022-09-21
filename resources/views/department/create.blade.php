@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-<div class="container text-center mt-4">
+<div class="container  mt-4">
   <div class="row">
     <div class="col">
     @role('admin')
@@ -24,7 +24,7 @@
               @endif
         <form action="/department" method="POST">
           @csrf
-            <div class="card-title mt-2">
+            <div class="card-title mx-2 mt-2">
                 <h6>Department Form<span class="required" style="color: red;">*</span></h6>
             </div>
             <hr>
@@ -59,7 +59,7 @@
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-title mt-2">
+        <div class="card-title mx-2 mt-2">
             <h6>Department Details</h6>
             <hr>
         </div>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\show\ProjectViewController;
+use App\Http\Controllers\show\UserViewController;
 use App\Http\Controllers\ProjectDetails\ProjectDetailsController;
 use App\Http\Controllers\BudgetHead\BudgetHeadController;
 use App\Http\Controllers\Project\ProjectController;
@@ -13,7 +15,7 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\BudgetDetailsController;
+//use App\Http\Controllers\BudgetDetailsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,11 +107,3 @@ require __DIR__.'/auth.php';
     Route::put('/projectdetail/edit/{id}',[ProjectDetailsController::class,'update'])->name('projectdetail.update')->middleware(['auth','role:admin']);
     Route::get('/projectdetail/delete/{id}',[ProjectDetailsController::class,'destroy'])->name('projectdetail.destroy')->middleware(['auth','role:admin']);
 
-//budget_details
-Route::get('/budget_details', function () {
-    return view('budget');
-});
-// Route::get('/budget_details',[BudgetDetailsController::class,'index']);
-Route::post('/budget_details',[BudgetDetailsController::class,'create']);
-Route::get('/show',[BudgetDetailsController::class,'showData']);
-Route::get('/edit/{id}',[BudgetDetailsController::class,'editData']);

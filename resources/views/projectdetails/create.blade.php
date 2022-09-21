@@ -145,7 +145,7 @@
                             </div>
                             <hr>
 
-                            <button id="submit" type="submit" disabled  class="btn btn-primary">Create Project</button>
+                            <button id="submit" type="submit" disabled  class="btn btn-primary float-end">Create Project</button>
 
 </form>
 

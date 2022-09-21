@@ -6,64 +6,60 @@
     </x-slot>
 <div class="container  mt-4">
   <div class="row">
-    @role('admin')
     <div class="col">
       <div class="card">
-        <!-- success massage -->
-        @if(session('success'))
-              <div class="alert alert-success">
-                  {{session('success')}}
-              </div>
-        @endif
-        <!-- card Title -->
-        <div class="card-title m-2">
-            <h6>Create User </h6>
-            <hr>
-        </div>
-        <div class="card-body">
-
-        <form action=" " method="POST">
-         @csrf
-         <div class="row">
-            <div class="col">
-              <!-- Faculty Title  -->
-              <div class="mb-6 ">
-                <label for="faculty_title">Faculty Title<span class="required" style="color: red;">*</span></label>
-                <!-- <input type="text" class="form-control form-control-sm" name="fac_title"  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title"> -->
-                <select name="fac_title" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                  <option selected hidden>Faculty Title </option>
-                  <option >Prf.</option>
+          <div class="mx-3 mt-2">
+              <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                          @role('admin')
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalToggleLabel">Create User</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          @endrole
+                          <div class="modal-body">
+                          <form action=" " method="POST">
+                        @csrf
+                        <div class="row">
+                           <div class="col">
+                            <!-- Faculty Title  -->
+                             <div class="mb-6 ">
+                           <label for="faculty_title">Faculty Title<span class="required" style="color: red;">*</span></label>
+                           <!-- <input type="text" class="form-control form-control-sm" name="fac_title"  id="faculty_title" aria-describedby="faculty_title" placeholder="Enter  Faculty Title"> -->
+                           <select name="fac_title" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                             <option selected hidden>Faculty Title </option>
+                             <option >Prf.</option>
 
 
-                   <option >Dr.</option>
-                   <option >Mr.</option>
-                   <option >Mis.</option>
+                              <option >Dr.</option>
+                              <option >Mr.</option>
+                              <option >Mis.</option>
 
-               </select>
-              </div>
-            </div>
-            <div class="col">
-            <!-- Faculty Name -->
-            <div class="mb-6">
-                <label for="faculty_name">Faculty Name<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="name"  id="faculty_name" aria-describedby="faculty_name" placeholder="Enter  Faculty Name">
-              </div>
-            </div>
-            <div class="col">
-              <!-- Faculty Code -->
-              <div class="mb-6">
-                <label for="faculty_code">Faculty Code<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_code"  id="faculty_code" aria-describedby="faculty_code" placeholder="Enter  Faculty Code">
-              </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col">
-                <!-- Faculty Email -->
-                <div class="mb-6">
-                <label for="faculty_email">Faculty Email<span class="required" style="color: red;">*</span></label>
-                <input type="email" class="form-control form-control-sm" name="email"  id="faculty_email" aria-describedby="faculty_email" placeholder="Enter  Faculty Email">
-
+                            </select>
+                           </div>
+                         </div>
+                         <div class="col">
+                         <!-- Faculty Name -->
+                         <div class="mb-6">
+                             <label for="faculty_name">Faculty Name<span class="required" style="color: red;">*</span></label>
+                             <input type="text" class="form-control form-control-sm" name="name"  id="faculty_name" aria-describedby="faculty_name" placeholder="Enter  Faculty Name">
+                           </div>
+                         </div>
+                       <div class="col">
+                         <!-- Faculty Code -->
+                         <div class="mb-6">
+                           <label for="faculty_code">Faculty Code<span class="required" style="color: red;">*</span></label>
+                           <input type="text" class="form-control form-control-sm" name="fac_code"  id="faculty_code" aria-describedby="faculty_code" placeholder="Enter  Faculty Code">
+                         </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                         <div class="col">
+                             <!-- Faculty Email -->
+                             <div class="mb-6">
+                             <label for="faculty_email">Faculty Email<span class="required" style="color: red;">*</span></label>
+                  <input type="email" class="form-control form-control-sm" name="email"  id="faculty_email" aria-describedby="faculty_email" placeholder="Enter  Faculty Email">
               </div>
             </div>
             <div class="col">
@@ -102,7 +98,7 @@
                <!-- Faculty Join Date -->
                <div class="mb-6">
                 <label for="faculty_join">Faculty Join<span class="required" style="color: red;">*</span></label>
-                <input type="text" class="form-control form-control-sm" name="fac_join"  id="from-datepicker" aria-describedby="faculty_join" placeholder="Enter  Faculty Join">
+                <input type="text" class="form-control form-control-sm" name="fac_join"  id="from-datepicker" aria-describedby="faculty_join" placeholder="Enter  Faculty Join" checked>
               </div>
             </div>
          </div>
@@ -163,17 +159,29 @@
               </div>
             </div>
          </div>
+         <hr>
          <!-- Button -->
-         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create User</button>
+         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-end">Create User</button>
         </form>
         </div>
-    </div>
-    @endrole
-    </div>
-    <div class="col">
-      <div class="card">
-        <div class="card-title mt-2 mx-2">
-          <h6>Edit User Details</h6>
+
+           </div>
+            </div>
+            </div>
+              @role('admin')
+              <a class="btn btn-primary float-end" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Create New User</a>
+              @endrole
+          </div>
+
+        <div class="card-title  mx-3">
+          <!-- success massage -->
+          @if(session('success'))
+           <div class="alert alert-success">
+                {{session('success')}}
+           </div>
+           @endif
+            <hr>
+          <h6> User Details</h6>
           <hr>
         </div>
         <div class="card-body">
@@ -185,14 +193,16 @@
               <th scope="col"> Email</th>
               <th scope="col"> Phone</th>
 
-              <!-- <th scope="col"> Join</th> -->
-              <!-- <th scope="col"> Retirement</th> -->
-              <!-- <th scope="col"> Department</th> -->
+              <th scope="col"> Join</th>
+              <th scope="col"> Retirement</th>
+              <th scope="col"> Department</th>
               <!-- <th scope="col"> Description</th> -->
+              <th scope="col"> Designation</th>
               <th scope="col"> Status</th>
 
               @role('admin')
-              <th scope="col">Action</th>
+              <th scope="col">View </th>
+              <th scope="col">Action </th>
               @endrole
             </tr>
            </thead>
@@ -204,22 +214,27 @@
              <td>{{$item->user->email}} </td>
              <td>{{$item->faculty->fac_phone}}</td>
 
-             <!-- <td>{{$item->faculty->fac_join}}</td> -->
-             <!-- <td>{{$item->faculty->fac_retirement}}</td>  -->
-             <!-- <td>{{$item->department->dept_name}}</td> -->
-             <!-- <td>{{$item->faculty->fac_description}}</td>  -->
+             <td>{{$item->faculty->fac_join}}</td>
+             <td>{{$item->faculty->fac_retirement}}</td>
+             <td>{{$item->department->dept_name}}</td>
+             <!-- <td>{{$item->faculty->fac_description}}</td> -->
+             <td>{{$item->faculty->fac_designtion}}</td>
              <td>{{$item->faculty->fac_status}}</td>
+             <th>
+              <a href=" {{ url('/createuser/edit',$item->id) }} ">
+             <i class="fa-solid fa-street-view"></i>
+            </a>
+             </th>
+              @role('admin')
 
              <th>
-              @role('admin')
              <a href=" {{ url('/createuser/edit',$item->id) }} ">
              <i class="fa-regular fa-pen-to-square"></i>
             </a>
             <a href=" {{ url('/createuser/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
-             </th>
-             <th>
+
                 </a>
             </th>
           </tr>
@@ -232,15 +247,4 @@
   </div>
 
 </div>
-<!-- @section('script')
-$( document ).ready(function() {
-        $("#from-datepicker").datepicker({
-            format: 'yyyy-mm-dd'
-        });
-        $("#from-datepicker").on("change", function () {
-            var fromdate = $(this).val();
-            // alert(fromdate);
-        });
-    });
-@endsection -->
 </x-admin-layout>
