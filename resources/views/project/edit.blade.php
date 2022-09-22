@@ -4,7 +4,7 @@
             {{ __('Project') }}
         </h2>
     </x-slot>
-<div class="container text-center mt-4">
+<div class="container  mt-4">
     <div class="row">
         <!-- main contain -->
         <div class="col">

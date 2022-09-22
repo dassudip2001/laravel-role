@@ -1,25 +1,29 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create Project') }}
+{{--            {{ __('Create Project') }}--}}
         </h2>
     </x-slot>
     <div class="container  mt-4 ">
         <div class="row">
+
             <div class="col">
-                <div class="card">
-                    <!-- success massage -->
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{session('success')}}
-                        </div>
-                    @endif
-                    <div class="card-title mt-2 mx-2">
-                        <div class="h5">Create New Project</div>
-                        <hr>
-                    </div>
-                    <div class="card-body">
-                        <!-- form Start -->
+                <div class="card ">
+                    <div class="mt-2 mx-2">
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Create New Project
+                    </button>
+
+                   <!-- Modal -->
+                   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-xl">
+                       <div class="modal-content">
+                         <div class="modal-header">
+                           <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body">
+                            <!-- form Start -->
                         <form action="" method="POST" name="budgetForm">
                             @csrf
                             <div class="row g-2">
@@ -144,18 +148,72 @@
                                 </div>
                             </div>
                             <hr>
-
                             <button id="submit" type="submit" disabled  class="btn btn-primary float-end">Create Project</button>
 
-</form>
+                         </form>
+                         </div>
 
+                       </div>
+                     </div>
+                   </div>
                     </div>
 
+                    <div class="card-title mt-2 mx-2">
+                        <!-- Button trigger modal -->
+                         <!-- success massage -->
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{session('success')}}
+                        </div>
+                    @endif
+                        <hr>
+                        <h6>Project Details</h6>
+                        <hr>
+                    </div>
+                <div class="card-body ">
+                 <table class="table overflow-auto">
+                     <thead>
+                     <tr>
+                         <td scope="col">Project No</td>
+                         <td scope="col">Project Title</td>
+                         <td scope="col">Project Scheme</td>
+                         <td scope="col">Project Duration</td>
+                         <td scope="col">Project Total Cost</td>
+                         <td scope="col">Funding Agency</td>
+                         <td scope="col">Budget Name</td>
+                         <td scope="col">Budget Details Cost</td>
+                         <td scope="col">Action</td>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     @foreach($projectDetail as $pro)
+                         <tr>
+                             <td>{{$pro->project->project_no}}</td>
+                             <td>{{$pro->project->project_title}}</td>
+                             <td>{{$pro->project->project_scheme}}</td>
+                             <td>{{$pro->project->project_duration}}</td>
+                             <td>{{$pro->project->project_total_cost}}</td>
+                             <td>{{$pro->fundingagency->agency_name}}</td>
+                             <td>{{$pro->budget_id}}</td>
+
+                             <td>{{$pro->budget_details_amount}}</td>
+                             <th>
+{{--                                 <a href=" {{ url('/projectdetail/edit',$pro->id) }} ">--}}
+{{--                                     <i class="fa-regular fa-pen-to-square"></i>--}}
+{{--                                 </a>--}}
+                                 <a href=" {{ url('/projectdetail/delete',$pro->id) }} ">
+                                     <button type="submit"><i class="fa-solid fa-trash"></i></button>
+
+
+                                 </a>
+                             </th>
+                         </tr>
+                     @endforeach
+                     </tbody>
+                  </table>
                 </div>
-
+                </div>
             </div>
-
-
         </div>
         @section('script')
             <!-- budget Details -->

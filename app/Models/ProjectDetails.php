@@ -31,7 +31,5 @@ class ProjectDetails extends Model
     public function budgethead(){
         return $this->belongsTo(BudgetHead::class,'budget_id','id');
     }
-    public function budgetdetails(){
-        return $this->belongsTo(BudgetDetails::class,'budgetdetails_id','id');
-    }
+
 }

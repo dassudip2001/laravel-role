@@ -61,8 +61,9 @@
            <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Budget Type</th>
               <th scope="col">Budget Title</th>
+              <th scope="col">Budget Type</th>
+
               @role('admin')
               <th scope="col">Action</th>
               @endrole
@@ -72,8 +73,9 @@
             @foreach ($budget as $item)
            <tr>
              <td>{{$item->id}}</td>
-             <td> {{$item->budget_type}}</td>
              <td> {{$item->budget_title}}</td>
+
+             <td> {{$item->budget_type}}</td>
              <th>
              @role('admin')
              <a href=" {{ url('/budget/edit',$item->id) }} ">

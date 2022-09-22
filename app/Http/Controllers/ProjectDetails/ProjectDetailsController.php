@@ -21,7 +21,7 @@ class ProjectDetailsController extends Controller
      */
     public function index()
     {
-
+        $projectDetail=ProjectDetails::all();
        $data2=DB::table('create_users')
             ->join('faculties','faculties.id',"=",'create_users.faculty_id')
             ->join('users','users.id',"=",'create_users.user_id')
@@ -30,8 +30,8 @@ class ProjectDetailsController extends Controller
         $budget=BudgetHead::all();
         $data=FundingAgency::all();
         $data3=Project::all();
-        $data4=BudgetDetails::all();
-        return view('projectdetails.create',compact('data','data2','budget','data3','data4'));
+//        $data4=BudgetDetails::all();
+        return view('projectdetails.create',compact('data','data2','budget','data3','projectDetail'));
 
     }
 
@@ -52,13 +52,10 @@ class ProjectDetailsController extends Controller
                  'project_duration'=>'required',
                  'project_total_cost'=>'required',
                  'budget_details_amount'=>'required',
-
-
             ]);
             $fields=$request->only(['project_no','project_title','project_scheme',
                 'project_duration','project_total_cost',
                'funding_agency_id','create_user_id','budget_id','budget_details_amount',
-
             ]);
             $project=new Project([
                 'project_no'=>$fields['project_no'],
@@ -68,9 +65,6 @@ class ProjectDetailsController extends Controller
                 'project_total_cost'=>$fields['project_total_cost'],
             ]);
             $project->save();
-
-
-
             $pivot=new ProjectDetails();
             // project Save
             $pivot->project_id=$project->id;
@@ -80,16 +74,13 @@ class ProjectDetailsController extends Controller
             $pivot->create_user_id=$fields['create_user_id'];
             // Budget  id field
             // $pivot->budget_id=implode(',',['budget_id']);
-
             $pivot->budget_id=implode($fields['budget_id']);
 //             $pivot['budget_id']=implode(',',$pivot->budget_id);
             // budget Amount Details
             $pivot->budget_details_amount=$fields['budget_details_amount'];
             $pivot['budget_details_amount']=implode(',',$pivot->budget_details_amount);
-
             $pivot->save();
             return redirect(route('projectdetail.index'))->with('success','Project Created Successfully');
-
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -130,20 +121,30 @@ class ProjectDetailsController extends Controller
      */
     public function edit($id)
     {
-
-
-
         try {
-            $pc=ProjectDetails::find($id);
-            return view('projectdetails.edit',compact('pc'));
+            return ProjectDetails::with([
+                'project'=>function($q){
+                $q->select(['id','project_no','project_title','project_scheme',
+                    'project_duration','project_total_cost']);
+                },
+                'fundingagency'=>function($q){
+
+                    $q->select(['id','agency_name']);
+                },
+                'createuser'=>function($q){
+                    $q->select(['id']);
+                },
+                'budgethead'=>function($q){
+                    $q->select(['id','']);
+                }
+            ])->get();
+            return view('projectdetails.edit',compact('projectDetail'));
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),
                 "status" => $e->getCode()
             ];
         }
-
-
     }
 
     /**
