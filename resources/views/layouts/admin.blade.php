@@ -50,9 +50,10 @@
                         <li><a class="dropdown-item" href=" {{ url('/projectdetail') }}">Create Project </a></li>
                     </ul>
                 </div>
+
                 <div class="dropdown mt-4 mx-4">
                     <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        View Details
+                        Edit Details
                     </button>
                     <ul class="dropdown-menu dropdown-menu-light">
                         <li><a class="dropdown-item" href=" {{ url('/faculty') }}">Faculty </a></li>

@@ -189,7 +189,9 @@
           <thead>
             <tr>
               <th scope="col"> Fac Code</th>
-              <th scope="col"> Name</th>
+                <th scope="col"> Fac Title</th>
+
+                <th scope="col"> Name</th>
               <th scope="col"> Email</th>
               <th scope="col"> Phone</th>
 
@@ -201,7 +203,7 @@
               <th scope="col"> Status</th>
 
               @role('admin')
-              <th scope="col">View </th>
+{{--              <th scope="col">View </th>--}}
               <th scope="col">Action </th>
               @endrole
             </tr>
@@ -210,8 +212,9 @@
          @foreach($createUser as $item)
            <tr>
              <td>{{$item->faculty->fac_code}}</td>
-             <td>{{$item->user->name}}</td>
-             <td>{{$item->user->email}} </td>
+               <td>{{$item->faculty->fac_title}}</td>
+               <td>{{$item->user->name}}</td>
+               <td>{{$item->user->email}} </td>
              <td>{{$item->faculty->fac_phone}}</td>
 
              <td>{{$item->faculty->fac_join}}</td>
@@ -220,17 +223,13 @@
              <!-- <td>{{$item->faculty->fac_description}}</td> -->
              <td>{{$item->faculty->fac_designtion}}</td>
              <td>{{$item->faculty->fac_status}}</td>
-             <th>
-              <a href=" {{ url('/createuser/edit',$item->id) }} ">
-             <i class="fa-solid fa-street-view"></i>
-            </a>
-             </th>
+
               @role('admin')
 
              <th>
-             <a href=" {{ url('/createuser/edit',$item->id) }} ">
-             <i class="fa-regular fa-pen-to-square"></i>
-            </a>
+{{--             <a href=" {{ url('/createuser/edit',$item->id) }} ">--}}
+{{--             <i class="fa-regular fa-pen-to-square"></i>--}}
+{{--            </a>--}}
             <a href=" {{ url('/createuser/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
