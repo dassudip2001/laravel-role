@@ -122,7 +122,7 @@ class ProjectDetailsController extends Controller
     public function edit($id)
     {
         try {
-            return ProjectDetails::with([
+            $projectDetail= ProjectDetails::with([
                 'project'=>function($q){
                 $q->select(['id','project_no','project_title','project_scheme',
                     'project_duration','project_total_cost']);
@@ -135,7 +135,7 @@ class ProjectDetailsController extends Controller
                     $q->select(['id']);
                 },
                 'budgethead'=>function($q){
-                    $q->select(['id','']);
+                    $q->select(['id']);
                 }
             ])->get();
             return view('projectdetails.edit',compact('projectDetail'));
