@@ -4,7 +4,7 @@
 {{--            {{ __('Create Project') }}--}}
         </h2>
     </x-slot>
-    <div class="container  mt-4 ">
+    <div class="container overflow-auto mt-4 ">
         <div class="row">
 
             <div class="col">

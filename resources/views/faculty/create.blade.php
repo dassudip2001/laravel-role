@@ -132,13 +132,13 @@
                             <td>{{$item->fac_status}}</td>
                             <td>{{$item->fac_description}}</td>
                             <th>
-                             @role('admin')
+                             
                              <a href=" {{ url('/faculty/edit',$item->id) }} ">
                               <i class="fa-regular fa-pen-to-square"></i>
                              </a>
                             <a href=" {{ url('/faculty/delete',$item->id) }} ">
                             <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                            @endrole
+                            
                              </th>
                         </tr>
                         @endforeach

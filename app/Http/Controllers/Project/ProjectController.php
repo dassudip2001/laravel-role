@@ -91,6 +91,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        abort_unless(auth()->user()->can('edit_project'),403,'you dont have required authorization to this resource');
+
         try {
             $project=Project::find($id);
             $project->project_no=$request->project_no;
@@ -117,6 +119,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
+        abort_unless(auth()->user()->can('delete_project'),403,'you dont have required authorization to this resource');
+
         Project::destroy($id);
         return redirect(route('project.index'));
 

@@ -121,6 +121,8 @@ class ProjectDetailsController extends Controller
      */
     public function edit($id)
     {
+        abort_unless(auth()->user()->can('edit_project'),403,'you dont have required authorization to this resource');
+
         try {
             $projectDetail= ProjectDetails::with([
                 'project'=>function($q){
@@ -156,6 +158,8 @@ class ProjectDetailsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        abort_unless(auth()->user()->can('edit_project'),403,'you dont have required authorization to this resource');
+
         try {
             $this->validate($request,[
                 'project_no',
@@ -199,6 +203,8 @@ class ProjectDetailsController extends Controller
      */
     public function destroy($id)
     {
+        abort_unless(auth()->user()->can('delete_project'),403,'you dont have required authorization to this resource');
+
         try {
             $pc=ProjectDetails::find($id)->project_id;
             ProjectDetails::find($id)->delete();

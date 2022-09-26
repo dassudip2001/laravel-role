@@ -74,6 +74,8 @@ class BudgetHeadController extends Controller
      */
     public function edit($id)
     {
+        abort_unless(auth()->user()->can('edit_budget'),403,'you dont have required authorization to this resource');
+
         $budget=BudgetHead::find($id);
         return view('budget.edit',compact('budget'));
     }

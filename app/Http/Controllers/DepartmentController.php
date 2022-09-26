@@ -80,6 +80,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
+        abort_unless(auth()->user()->can('edit_department'),403,'you dont have required authorization to this resource');
+
         try {
             $department=Department::find($id);
             return view('department.editform',compact('department'));
@@ -101,6 +103,8 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
    {
+       abort_unless(auth()->user()->can('update_department'),403,'you dont have required authorization to this resource');
+
        try {
            $department=Department::find($id);
            $department->dept_name=$request->dept_name;
@@ -145,6 +149,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
+        abort_unless(auth()->user()->can('delete_department'),403,'you dont have required authorization to this resource');
+
         try {
             Department::destroy($id);
             return redirect(route('index'))->with('success','Department Delete Successfully');
