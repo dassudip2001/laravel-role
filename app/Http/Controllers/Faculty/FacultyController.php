@@ -16,8 +16,16 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $faculty=Faculty::all();
-        return view('faculty.create',compact('faculty'));
+        try {
+            $faculty=Faculty::all();
+            return view('faculty.create',compact('faculty'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**

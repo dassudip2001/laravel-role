@@ -19,14 +19,22 @@ class CreateUserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $createUser= CreateUser::all();
+        try {
+            $createUser= CreateUser::all();
 //        $faculty=Faculty::all();
-        $data=Department::all();
-       return view('user.create',compact('data','createUser',));
+            $data=Department::all();
+            return view('user.create',compact('data','createUser',));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
  }
 
     /**
@@ -153,9 +161,9 @@ class CreateUserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id):array
+    public function update(Request $request, $id)
     {
         try {
 //            $createUser=CreateUser::find($id);
@@ -216,7 +224,8 @@ class CreateUserController extends Controller
            $user->save();
             //            create user delete
             CreateUser::find($id)->save();
-            return redirect(route('usercreate.index'))->with('success','User Update Successfully');
+            return redirect(route('usercreate.index'))
+                ->with('success','User Update Successfully');
         }catch (Exception $e){
             return ["message" => $e->getMessage(),
                 "status" => $e->getCode()
