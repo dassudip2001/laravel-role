@@ -4,7 +4,7 @@
 {{--            {{ __('Create Project') }}--}}
         </h2>
     </x-slot>
-    <div class="container  mt-4 ">
+    <div class="container overflow-auto mt-4 ">
         <div class="row">
 
             <div class="col">
@@ -198,9 +198,9 @@
 
                              <td>{{$pro->budget_details_amount}}</td>
                              <th>
-{{--                                 <a href=" {{ url('/projectdetail/edit',$pro->id) }} ">--}}
-{{--                                     <i class="fa-regular fa-pen-to-square"></i>--}}
-{{--                                 </a>--}}
+                                 <a href=" {{ url('/projectdetail/edit',$pro->id) }} ">
+                                     <i class="fa-regular fa-pen-to-square"></i>
+                                 </a>
                                  <a href=" {{ url('/projectdetail/delete',$pro->id) }} ">
                                      <button type="submit"><i class="fa-solid fa-trash"></i></button>
 

@@ -13,12 +13,20 @@ class BudgetHeadController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $budget=BudgetHead::all();
-        return view('budget.create',compact('budget'));
+        try {
+            $budget=BudgetHead::all();
+            return view('budget.create',compact('budget'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
@@ -70,12 +78,21 @@ class BudgetHeadController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        $budget=BudgetHead::find($id);
-        return view('budget.edit',compact('budget'));
+        abort_unless(auth()->user()->can('edit_budget'),403,'you dont have required authorization to this resource');
+        try {
+
+            $budget=BudgetHead::find($id);
+            return view('budget.edit',compact('budget'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
     }
 
     /**

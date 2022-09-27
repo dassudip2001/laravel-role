@@ -12,18 +12,26 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $project=Project::all();
-        return view('project.create',compact('project'));
+        try {
+            $project=Project::all();
+            return view('project.create',compact('project'));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return array
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create(Request $request)
     {
@@ -37,7 +45,8 @@ class ProjectController extends Controller
             $project->project_duration=$request->project_duration;
             $project->project_total_cost=$request->project_total_cost;
             $project->save();
-            return redirect(route('project.index'));
+            return redirect(route('project.index'))
+                ->with('success','Project Create Successfully');
 
 
         }catch (Exception $e){
@@ -74,7 +83,7 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -87,10 +96,12 @@ class ProjectController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
+        abort_unless(auth()->user()->can('edit_project'),403,'you dont have required authorization to this resource');
+
         try {
             $project=Project::find($id);
             $project->project_no=$request->project_no;
@@ -99,7 +110,8 @@ class ProjectController extends Controller
             $project->project_duration=$request->project_duration;
             $project->project_total_cost=$request->project_total_cost;
             $project->save();
-            return redirect(route('project.index'));
+            return redirect(route('project.index'))
+                ->with('success','Project Update Successfully');
 
         }catch (Exception $e){
 
@@ -113,12 +125,15 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
+        abort_unless(auth()->user()->can('delete_project'),403,'you dont have required authorization to this resource');
+
         Project::destroy($id);
-        return redirect(route('project.index'));
+        return redirect(route('project.index'))
+            ->with('success','Project Delete Successfully');
 
     }
 }

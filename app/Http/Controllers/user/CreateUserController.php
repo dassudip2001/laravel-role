@@ -19,14 +19,22 @@ class CreateUserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $createUser= CreateUser::all();
+        try {
+            $createUser= CreateUser::all();
 //        $faculty=Faculty::all();
-        $data=Department::all();
-       return view('user.create',compact('data','createUser'));
+            $data=Department::all();
+            return view('user.create',compact('data','createUser',));
+        }catch (Exception $e){
+
+            return ["message" => $e->getMessage(),
+                "status" => $e->getCode()
+            ];
+        }
+
  }
 
     /**
@@ -36,30 +44,27 @@ class CreateUserController extends Controller
      */
     public function create(Request $request)
     {
+
        abort_unless(auth()->user()->can('create_user'),403,'you dont have required authorization to this resource');
         try {
-
 //               dd($request->all());
             $this->validate($request, [
-
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|confirmed|min:8',
                 'fac_code' => 'required|unique:faculties|max:50',
                 'fac_title' => 'required',
                 'fac_join' => 'required',
-
                 'fac_retirement'=>'required',
                 'fac_designtion' => 'required',
                 'fac_phone' => 'required',
                 'fac_status' => 'required',
                 'fac_description' => 'required',
-
             ]);
             $fields=$request->only(['name','email','password'
               ,'fac_code','fac_title','fac_join','fac_retirement',
-               'fac_designtion','fac_phone','fac_status','fac_description','department_id',
-
+               'fac_designtion','fac_phone','fac_status','fac_description',
+                'department_id',
             ]);
             $user = new User([
                 'name'=>$fields['name'],
@@ -67,20 +72,15 @@ class CreateUserController extends Controller
                 'password' => bcrypt($fields['password']),
             ]);
             $user->save();
-
             $faculty = new Faculty([
-
-//                'fac_name' => $fields['fac_name'],
                 'fac_code' => $fields['fac_code'],
                 'fac_title' => $fields['fac_title'],
                 'fac_designtion' => $fields['fac_designtion'],
                 'fac_join' => $fields['fac_join'],
                 'fac_retirement' => $fields['fac_retirement'],
                 'fac_phone' => $fields['fac_phone'],
-
                 'fac_status' => $fields['fac_status'],
                 'fac_description' => $fields['fac_description'],
-
             ]);
             $faculty->save();
             $pivot=new CreateUser();
@@ -95,9 +95,6 @@ class CreateUserController extends Controller
                 "status" => $e->getCode()
             ];
         }
-
-
-
     }
 
     /**
@@ -130,21 +127,25 @@ class CreateUserController extends Controller
      */
     public function edit($id)
     {
+
+
         try {
-            $createUser= CreateUser::with(
-                [
-                    'user' => function ($q) {
-                        $q->select(['id', 'name', 'email',]);
-                    },
-                    'faculty' => function ($q) {
-                        $q->select(['id', 'fac_code', 'fac_title','fac_designtion',
-                            'fac_join','fac_retirement','fac_phone','fac_status','fac_description']);
-                    },
-                    'department' => function ($q) {
-                $q->select(['id',  'dept_code']);
-            }
-                ]
-            )->get();
+           $createUser= CreateUser::with('faculty','user','department')
+            ->get();
+//            $createUser= CreateUser::with(
+//                [
+//                    'user' => function ($q) {
+//                        $q->select(['id', 'name', 'email',]);
+//                    },
+//                    'faculty' => function ($q) {
+//                        $q->select(['id', 'fac_code', 'fac_title','fac_designtion',
+//                            'fac_join','fac_retirement','fac_phone','fac_status','fac_description']);
+//                    },
+//                    'department' => function ($q) {
+//                $q->select(['id',  'dept_code']);
+//            }
+//                ]
+//            )->get();
             return view('user.edit',compact('createUser'));
         }catch (Exception $e){
 
@@ -160,49 +161,72 @@ class CreateUserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id):array
+    public function update(Request $request, $id)
     {
-
-
-//        $user_pivot=CreateUser::find($id);
-//        if ($user_pivot==null){
-//            return response()->json("user not found ",404);
-//        }
-
         try {
-
-            $createUser=CreateUser::find($id);
-            $faculty=Faculty::find($createUser->faculty_id);
-            if ($createUser==null){
-                abort(501, "Opps! There no record associate with this id $id");
-            }
-
-             $this->validate($request,[
-                 'name' => 'required|string|max:255',
-                 'password' => 'required|string|confirmed|min:8',
-                 'fac_phone'=>'required' ,
-                 'fac_description'=>'required' ,
-                 ]);
-                 $fields=$request->only(['name','password',
-                     'fac_phone','fac_description',
-                 ]);
-            $user = new User([
-                'name'=>$fields['name'],
-
-                'password' => bcrypt($fields['password']),
+//            $createUser=CreateUser::find($id);
+//            $faculty=Faculty::find($createUser->faculty_id);
+//            if ($createUser==null){
+//                abort(501, "Opps! There no record associate with this id $id");
+//            }
+//
+//             $this->validate($request,[
+//                 'name' => 'required|string|max:255',
+//                 'password' => 'required|string|confirmed|min:8',
+//                 'fac_phone'=>'required' ,
+//                 'fac_description'=>'required' ,
+//                 ]);
+//                 $fields=$request->only(['name','password',
+//                     'fac_phone','fac_description',
+//                 ]);
+//            $user = new User([
+//                'name'=>$fields['name'],
+//
+//                'password' => bcrypt($fields['password']),
+//            ]);
+//            $user->save();
+//
+//            $faculty = new Faculty([
+//                'fac_phone' => $fields['fac_phone'],
+//                'fac_description' => $fields['fac_description'],
+//            ]);
+//            $faculty->save();
+            $this->validate($request,[
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|confirmed|min:8',
+                'fac_title' => 'required',
+                'fac_designtion' => 'required',
+                'fac_phone' => 'required',
+                'fac_status' => 'required',
+                'fac_description' => 'required',
             ]);
-            $user->save();
-
-            $faculty = new Faculty([
-                'fac_phone' => $fields['fac_phone'],
-                'fac_description' => $fields['fac_description'],
+            $fields=$request->only(['name','password'
+                ,'fac_title', 'fac_designtion','fac_phone','fac_status','fac_description',
             ]);
+            $fc=CreateUser::find($id)->faculty_id;
+            $uc=CreateUser::find($id)->user_id;
+//            faculty Delete
+            $faculty=Faculty::find($fc);
+            $faculty->fac_code=$fields->fac_code;
+            $faculty->fac_title=$fields->fac_title;
+            $faculty->fac_designtion=$fields->fac_designtion;
+            $faculty->fac_phone=$fields->fac_phone;
+            $faculty->fac_status=$fields->fac_status;
+            $faculty->fac_description=$fields->fac_description;
             $faculty->save();
-            return redirect(route('usercreate.index'))->with('success','User Update Successfully');
+//            user delete
+           $user=User::find($uc);
+           $user->name=$fields->name;
+           $user->password=bcrypt($fields->password);
+           $user->save();
+            //            create user delete
+            CreateUser::find($id)->save();
+            return redirect(route('usercreate.index'))
+                ->with('success','User Update Successfully');
         }catch (Exception $e){
-
             return ["message" => $e->getMessage(),
                 "status" => $e->getCode()
             ];

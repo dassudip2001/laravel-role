@@ -30,12 +30,9 @@
                            <select name="fac_title" class="form-select form-select-sm" aria-label=".form-select-sm example">
                              <option selected hidden>Faculty Title </option>
                              <option >Prf.</option>
-
-
                               <option >Dr.</option>
                               <option >Mr.</option>
                               <option >Mis.</option>
-
                             </select>
                            </div>
                          </div>
@@ -86,11 +83,8 @@
                 <select name="fac_designtion" class="form-select form-select-sm" aria-label=".form-select-sm example">
                   <option selected hidden>Faculty Designation  </option>
                   <option >Professor </option>
-
-
                    <option >Associate Professor </option>
                    <option >Assistance Professor</option>
-
                </select>
               </div>
             </div>
@@ -127,10 +121,7 @@
                 <select name="fac_status" class="form-select form-select-sm" aria-label=".form-select-sm example">
                <option selected hidden>Faculty Status </option>
                <option >Active </option>
-
-
               <option >Dactive </option>
-
                </select>
               </div>
             </div>
@@ -164,7 +155,6 @@
          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-end">Create User</button>
         </form>
         </div>
-
            </div>
             </div>
             </div>
@@ -172,7 +162,6 @@
               <a class="btn btn-primary float-end" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Create New User</a>
               @endrole
           </div>
-
         <div class="card-title  mx-3">
           <!-- success massage -->
           @if(session('success'))
@@ -190,18 +179,15 @@
             <tr>
               <th scope="col"> Fac Code</th>
                 <th scope="col"> Fac Title</th>
-
                 <th scope="col"> Name</th>
               <th scope="col"> Email</th>
               <th scope="col"> Phone</th>
-
               <th scope="col"> Join</th>
               <th scope="col"> Retirement</th>
               <th scope="col"> Department</th>
               <!-- <th scope="col"> Description</th> -->
               <th scope="col"> Designation</th>
               <th scope="col"> Status</th>
-
               @role('admin')
 {{--              <th scope="col">View </th>--}}
               <th scope="col">Action </th>
@@ -216,24 +202,20 @@
                <td>{{$item->user->name}}</td>
                <td>{{$item->user->email}} </td>
              <td>{{$item->faculty->fac_phone}}</td>
-
              <td>{{$item->faculty->fac_join}}</td>
              <td>{{$item->faculty->fac_retirement}}</td>
              <td>{{$item->department->dept_name}}</td>
              <!-- <td>{{$item->faculty->fac_description}}</td> -->
              <td>{{$item->faculty->fac_designtion}}</td>
              <td>{{$item->faculty->fac_status}}</td>
-
               @role('admin')
-
              <th>
-{{--             <a href=" {{ url('/createuser/edit',$item->id) }} ">--}}
-{{--             <i class="fa-regular fa-pen-to-square"></i>--}}
-{{--            </a>--}}
+             <a href=" {{ url('/createuser/edit',$item->id) }} ">
+             <i class="fa-regular fa-pen-to-square"></i>
+            </a>
             <a href=" {{ url('/createuser/delete',$item->id) }} ">
             <button type="submit"><i class="fa-solid fa-trash"></i></button>
              @endrole
-
                 </a>
             </th>
           </tr>
@@ -244,6 +226,5 @@
       </div>
     </div>
   </div>
-
 </div>
 </x-admin-layout>

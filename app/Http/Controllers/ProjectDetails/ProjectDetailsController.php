@@ -31,7 +31,8 @@ class ProjectDetailsController extends Controller
         $data=FundingAgency::all();
         $data3=Project::all();
 //        $data4=BudgetDetails::all();
-        return view('projectdetails.create',compact('data','data2','budget','data3','projectDetail'));
+        return view('projectdetails.create',
+            compact('data','data2','budget','data3','projectDetail'));
 
     }
 
@@ -42,7 +43,8 @@ class ProjectDetailsController extends Controller
      */
     public function create(Request $request)
     {
-         abort_unless(auth()->user()->can('create_project'),403,'you dont have required authorization to this resource');
+         abort_unless(auth()->user()->can('create_project'),
+             403,'you dont have required authorization to this resource');
 
         try {
             $this->validate($request,[
@@ -80,7 +82,8 @@ class ProjectDetailsController extends Controller
             $pivot->budget_details_amount=$fields['budget_details_amount'];
             $pivot['budget_details_amount']=implode(',',$pivot->budget_details_amount);
             $pivot->save();
-            return redirect(route('projectdetail.index'))->with('success','Project Created Successfully');
+            return redirect(route('projectdetail.index'))
+                ->with('success','Project Created Successfully');
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
@@ -121,24 +124,32 @@ class ProjectDetailsController extends Controller
      */
     public function edit($id)
     {
-        try {
-            return ProjectDetails::with([
-                'project'=>function($q){
-                $q->select(['id','project_no','project_title','project_scheme',
-                    'project_duration','project_total_cost']);
-                },
-                'fundingagency'=>function($q){
 
-                    $q->select(['id','agency_name']);
-                },
-                'createuser'=>function($q){
-                    $q->select(['id']);
-                },
-                'budgethead'=>function($q){
-                    $q->select(['id','']);
-                }
-            ])->get();
-            return view('projectdetails.edit',compact('projectDetail'));
+        abort_unless(auth()->user()->can('edit_project'),
+            403,'you dont have required authorization to this resource');
+
+        try {
+            $projectDetail= ProjectDetails::with('project','fundingagency','createuser','budgethead')
+
+            ->get();
+//            $projectDetail= ProjectDetails::with([
+//                'project'=>function($q){
+//                $q->select(['id','project_no','project_title','project_scheme',
+//                    'project_duration','project_total_cost']);
+//                },
+//                'fundingagency'=>function($q){
+//
+//                    $q->select(['id','agency_name']);
+//                },
+//                'createuser'=>function($q){
+//                    $q->select(['id']);
+//                },
+//                'budgethead'=>function($q){
+//                    $q->select(['id']);
+//                }
+//            ])->get();
+            return view('projectdetails.edit',compact('projectDetail'))
+                ->with('success','Project Update Successfully');
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),
@@ -156,6 +167,9 @@ class ProjectDetailsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        abort_unless(auth()->user()->can('edit_project'),
+            403,'you dont have required authorization to this resource');
+
         try {
             $this->validate($request,[
                 'project_no',
@@ -164,25 +178,26 @@ class ProjectDetailsController extends Controller
                 'project_duration',
                 'project_total_cost',
             ]);
-//            $fields=$request->only([
-//                'project_no',
-//                'project_title',
-//                'project_scheme',
-//                'project_duration',
-//                'project_total_cost',
-//            ]);
+            $fields=$request->only([
+                'project_no',
+                'project_title',
+                'project_scheme',
+                'project_duration',
+                'project_total_cost',
+            ]);
             $pc=ProjectDetails::find($id);
             $fc=Project::find($pc->id);
             if ($pc==null){
                 abort(501,"There no record found!!");
             }
-            $fc->project_no=$request->project_no;
-            $fc->project_title=$request->project_title;
-            $fc->project_scheme=$request->project_scheme;
-            $fc->project_duration=$request->project_duration;
-            $fc->project_total_cost=$request->project_total_cost;
+            $fc->project_no=$fields->project_no;
+            $fc->project_title=$fields->project_title;
+            $fc->project_scheme=$fields->project_scheme;
+            $fc->project_duration=$fields->project_duration;
+            $fc->project_total_cost=$fields->project_total_cost;
             $fc->save();
-            return redirect(route('projectdetail.index'));
+            return redirect(route('projectdetail.index'))
+                ->with('success','Project Update Successfully');
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),
@@ -199,11 +214,15 @@ class ProjectDetailsController extends Controller
      */
     public function destroy($id)
     {
+        abort_unless(auth()->user()->can('delete_project'),
+            403,'you dont have required authorization to this resource');
+
         try {
             $pc=ProjectDetails::find($id)->project_id;
             ProjectDetails::find($id)->delete();
             Project::find($pc)->delete();
-            return redirect(route('projectdetail.index'))->with('success', 'Data Deleted Successfully');
+            return redirect(route('projectdetail.index'))
+                ->with('success', 'Data Deleted Successfully');
         }catch (Exception $e){
 
             return ["message" => $e->getMessage(),

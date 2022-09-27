@@ -68,7 +68,7 @@ require __DIR__.'/auth.php';
 // Faculty Routes
    Route::get('/faculty',[FacultyController::class,'index'])->name('faculty.index');
    Route::post('/faculty',[FacultyController::class,'create'])->name('faculty.create')->middleware(['auth','role:admin']);
-   Route::get('/faculty/edit/{id}',[FacultyController::class,'edit'])->name('faculty.edit');
+   Route::get('/faculty/edit/{id}',[FacultyController::class,'edit'])->name('faculty.edit')->middleware('permission:edit_faculty');
    Route::put('/faculty/edit/{id}',[FacultyController::class,'update'])->name('faculty.update');
    Route::get('/faculty/delete/{id}',[FacultyController::class,'destroy'])->name('faculty.destroy');
 
@@ -82,28 +82,28 @@ require __DIR__.'/auth.php';
 //   funding agency
     Route::get('/funding',[FundingAgencyController::class,'index'])->name('funding.index');
     Route::post('/funding',[FundingAgencyController::class,'create'])->name('funding.create')->middleware(['auth','role:admin']);
-    Route::get('/funding/edit/{id}',[FundingAgencyController::class,'edit'])->name('funding.update');
+    Route::get('/funding/edit/{id}',[FundingAgencyController::class,'edit'])->name('funding.edit');
     Route::put('/funding/edit/{id}',[FundingAgencyController::class,'update'])->name('funding.update');
     Route::get('/funding/delete/{id}',[FundingAgencyController::class,'destroy'])->name('funding.destroy');
 
 //    Budget Head
     Route::get('/budget',[BudgetHeadController::class,'index'])->name('budget.index');
     Route::post('/budget',[BudgetHeadController::class,'create'])->name('budget.create')->middleware(['auth','role:admin']);
-    Route::get('/budget/edit/{id}',[BudgetHeadController::class,'edit'])->name('budget.update');
+    Route::get('/budget/edit/{id}',[BudgetHeadController::class,'edit'])->name('budget.edit');
     Route::put('/budget/edit/{id}',[BudgetHeadController::class,'update'])->name('budget.update');
     Route::get('/budget/delete/{id}',[BudgetHeadController::class,'destroy'])->name('budget.destroy');
 
 //Project
     Route::get('/project',[ProjectController::class,'index'])->name('project.index');
     Route::post('/project',[ProjectController::class,'create'])->name('project.create')->middleware(['auth','role:admin']);
-    Route::get('/project/edit/{id}',[ProjectController::class,'edit'])->name('project.update')->middleware(['auth','role:admin']);
+    Route::get('/project/edit/{id}',[ProjectController::class,'edit'])->name('project.edit')->middleware(['auth','role:admin']);
     Route::put('/project/edit/{id}',[ProjectController::class,'update'])->name('project.update')->middleware(['auth','role:admin']);
     Route::get('/project/delete/{id}',[ProjectController::class,'destroy'])->name('project.destroy')->middleware(['auth','role:admin']);
 
 // Project Details
     Route::get('/projectdetail',[ProjectDetailsController::class,'index'])->name('projectdetail.index');
     Route::post('/projectdetail',[ProjectDetailsController::class,'create'])->name('projectdetail.create')->middleware(['auth','role:admin']);
-    Route::get('/projectdetail/edit/{id}',[ProjectDetailsController::class,'edit'])->name('projectdetail.update')->middleware(['auth','role:admin']);
+    Route::get('/projectdetail/edit/{id}',[ProjectDetailsController::class,'edit'])->name('projectdetail.edit')->middleware(['auth','role:admin']);
     Route::put('/projectdetail/edit/{id}',[ProjectDetailsController::class,'update'])->name('projectdetail.update')->middleware(['auth','role:admin']);
     Route::get('/projectdetail/delete/{id}',[ProjectDetailsController::class,'destroy'])->name('projectdetail.destroy')->middleware(['auth','role:admin']);
 
