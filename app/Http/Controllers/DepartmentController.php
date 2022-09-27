@@ -103,7 +103,7 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
    {
-       abort_unless(auth()->user()->can('update_department'),403,'you dont have required authorization to this resource');
+       abort_unless(auth()->user()->can('edit_department'),403,'you dont have required authorization to this resource');
 
        try {
            $department=Department::find($id);

@@ -121,25 +121,29 @@ class ProjectDetailsController extends Controller
      */
     public function edit($id)
     {
+
         abort_unless(auth()->user()->can('edit_project'),403,'you dont have required authorization to this resource');
 
         try {
-            $projectDetail= ProjectDetails::with([
-                'project'=>function($q){
-                $q->select(['id','project_no','project_title','project_scheme',
-                    'project_duration','project_total_cost']);
-                },
-                'fundingagency'=>function($q){
+            $projectDetail= ProjectDetails::with('project','fundingagency','createuser','budgethead')
 
-                    $q->select(['id','agency_name']);
-                },
-                'createuser'=>function($q){
-                    $q->select(['id']);
-                },
-                'budgethead'=>function($q){
-                    $q->select(['id']);
-                }
-            ])->get();
+            ->get();
+//            $projectDetail= ProjectDetails::with([
+//                'project'=>function($q){
+//                $q->select(['id','project_no','project_title','project_scheme',
+//                    'project_duration','project_total_cost']);
+//                },
+//                'fundingagency'=>function($q){
+//
+//                    $q->select(['id','agency_name']);
+//                },
+//                'createuser'=>function($q){
+//                    $q->select(['id']);
+//                },
+//                'budgethead'=>function($q){
+//                    $q->select(['id']);
+//                }
+//            ])->get();
             return view('projectdetails.edit',compact('projectDetail'));
         }catch (Exception $e){
 
@@ -168,23 +172,23 @@ class ProjectDetailsController extends Controller
                 'project_duration',
                 'project_total_cost',
             ]);
-//            $fields=$request->only([
-//                'project_no',
-//                'project_title',
-//                'project_scheme',
-//                'project_duration',
-//                'project_total_cost',
-//            ]);
+            $fields=$request->only([
+                'project_no',
+                'project_title',
+                'project_scheme',
+                'project_duration',
+                'project_total_cost',
+            ]);
             $pc=ProjectDetails::find($id);
             $fc=Project::find($pc->id);
             if ($pc==null){
                 abort(501,"There no record found!!");
             }
-            $fc->project_no=$request->project_no;
-            $fc->project_title=$request->project_title;
-            $fc->project_scheme=$request->project_scheme;
-            $fc->project_duration=$request->project_duration;
-            $fc->project_total_cost=$request->project_total_cost;
+            $fc->project_no=$fields->project_no;
+            $fc->project_title=$fields->project_title;
+            $fc->project_scheme=$fields->project_scheme;
+            $fc->project_duration=$fields->project_duration;
+            $fc->project_total_cost=$fields->project_total_cost;
             $fc->save();
             return redirect(route('projectdetail.index'));
         }catch (Exception $e){

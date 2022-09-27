@@ -41,7 +41,7 @@ class FacultyController extends Controller
            $faculty->fac_status=$request->fac_status;
            $faculty->fac_description=$request->fac_description;
            $faculty->save();
-           return redirect(route('faculty.index'))->with("massage","Faculty Created successfully");
+           return redirect(route('faculty.index'))->with("success","Faculty Created successfully");
 
            }catch (Exception $e)
            {
@@ -86,14 +86,14 @@ class FacultyController extends Controller
         try {
             $faculty=Faculty::find($id);
         return view('faculty.editform',compact('faculty'));
-           
+
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
         "status" => $e->getCode()
          ];
         }
-        
+
 
     }
 
@@ -119,15 +119,15 @@ class FacultyController extends Controller
         $faculty->fac_status=$request->fac_status;
         $faculty->fac_description=$request->fac_description;
         $faculty->save();
-        return redirect(route('faculty.index'));
-            
+        return redirect(route('faculty.index'))->with('success','Faculty Update Successfully');
+
         }catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
         "status" => $e->getCode()
          ];
         }
-      
+
 
 
 
@@ -144,14 +144,14 @@ class FacultyController extends Controller
         abort_unless(auth()->user()->can('delete_faculty'),403,'you dont have required authorization to this resource');
         try {
             Faculty::destroy($id);
-            return redirect(route('faculty.index'));
+            return redirect(route('faculty.index'))->with('success','Faculty Update successfully');
         } catch (Exception $e)
         {
             return ["message" => $e->getMessage(),
         "status" => $e->getCode()
          ];
         }
-        
+
 
     }
 }
